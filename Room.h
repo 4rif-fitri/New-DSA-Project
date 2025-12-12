@@ -1,0 +1,203 @@
+﻿#include <iostream>
+#include <iomanip>
+#include <windows.h>
+#include <conio.h>
+#include <functional> // Include this header for std::function
+
+using namespace std;
+class Room {
+public:
+	class Node {
+	public:
+		string name;
+		int roomNumber;
+		double price;
+		string type;
+		string isaVailable;
+		string dateChackIn;
+		string dateChackOut;
+		string payment;
+		Node* link;
+	};
+	int totalRoom = 0;
+	Node* pHead = nullptr;
+	Node* pCurr;
+
+	Room() {};
+	~Room() {};
+
+	void AddRoom(HANDLE hConsole);
+
+	void ShowRoom(HANDLE hConsole);
+
+	void SortRoom(HANDLE hConsole);
+
+	void SearchRoom(HANDLE hConsole);
+
+	void DeleteRoom(HANDLE hConsole);
+
+	void PrintBody(int baris, HANDLE hConsole);
+
+	void InsertDefaultNode(const string& name, double price, const string& type,
+		const string& available = "Yes",
+		const string& checkIn = " - ",
+		const string& checkOut = " - ",
+		const string& paymentStatus = " - ") {
+
+		Node* pNew = new Node();
+
+		totalRoom++;
+
+		pNew->roomNumber = totalRoom;
+		pNew->name = name;
+		pNew->price = price;
+		pNew->type = type;
+
+		// Guna parameter yang baru dimasukkan
+		pNew->isaVailable = available;
+		pNew->dateChackIn = checkIn;
+		pNew->dateChackOut = checkOut;
+		pNew->payment = paymentStatus;
+
+		pNew->link = nullptr;
+
+		// Logik Linked List (sama seperti sebelum ini)
+		if (pHead == nullptr) {
+			pHead = pNew;
+		}
+		else {
+			Node* temp = pHead;
+			while (temp->link != nullptr) {
+				temp = temp->link;
+			}
+			temp->link = pNew;
+		}
+	}
+
+	void static aaa(string text) {
+		char tl = 218; // ┌  
+		char tr = 191; // ┐  
+		char bl = 192; // └  
+		char br = 217; // ┘  
+		char hor = 196; // ─  
+		char ver = 179; // │  
+		char th = 195;  // ├  
+		char th_right = 180; // ┤  
+
+		cout << tl;
+		for (int i = 0; i < 30; i++) cout << hor;
+		cout << tr << endl;
+
+		cout << ver << setw(16) << text << setw(14) << ver << endl;
+
+		cout << bl;
+		for (int i = 0; i < 30; i++) cout << hor;
+		cout << br << endl << endl;
+	}
+
+	void ShowAll() {
+		Node* temps = pHead;
+		int i = 1;
+		char tl = 218; // ┌  
+		char tr = 191; // ┐  
+		char bl = 192; // └  
+		char br = 217; // ┘  
+		char hor = 196; // ─  
+		char ver = 179; // │  
+		char th = 195;  // ├  
+		char th_right = 180; // ┤  
+		char tee_top = 194;//┬
+		char aaa = 193;//└
+		char sss = 217; //┘
+		char ddd = 197;//┼
+
+		cout << tl;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tr << endl;
+
+		cout << ver
+			<< setw(14) << "Number Room" << ver
+			<< setw(14) << "Name" << ver
+			<< setw(14) << "Type" << ver
+			<< setw(14) << "Price" << ver
+			<< setw(14) << "Available" << ver
+			<< setw(14) << "Date ChackIn" << ver
+			<< setw(14) << "Date ChackIn" << ver
+			<< setw(14) << "Peyment" << ver << endl;
+
+		cout << th;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << th_right << endl;
+
+		if (totalRoom == 0) {
+			cout << ver << setw(120) << ver << endl;
+			cout << ver << setw(14 * 4) << "No Data Yet" << setw(64) << ver << endl;
+			cout << ver << setw(120) << ver << endl;
+
+		}
+		else {
+			while (temps != nullptr) {
+				cout << ver
+					<< setw(14) << temps->roomNumber << ver
+					<< setw(14) << temps->name << ver
+					<< setw(14) << temps->type << ver
+					<< setw(14) << temps->price << ver
+					<< setw(14) << temps->isaVailable << ver
+					<< setw(14) << temps->dateChackIn << ver
+					<< setw(14) << temps->dateChackOut << ver
+					<< setw(14) << temps->payment << ver
+					<< endl;
+
+				temps = temps->link;
+				i++;
+			}
+
+		}
+
+		cout << bl;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << sss << endl;
+	}
+};
