@@ -3,7 +3,7 @@ using namespace std;
 #include "Room.h"
 void Room::SortRoom(HANDLE hConsole) {
     system("cls");
-    aaa("Sort Room by Price");
+    printLabel("Sort Room by Price");
 
     if (totalRoom == 1) {
         ShowAll();

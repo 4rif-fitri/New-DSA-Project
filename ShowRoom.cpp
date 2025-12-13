@@ -2,7 +2,7 @@
 using namespace std;
 #include "Room.h"
 
-void Room::ShowRoom(HANDLE hConsole) {
+void Room::ShowRoom() {
 	system("cls");
 	ShowAll();
 	cout << "Pess ESC to back";

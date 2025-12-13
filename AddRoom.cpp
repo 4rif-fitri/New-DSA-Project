@@ -3,46 +3,43 @@
 #include <windows.h>
 #include <string>
 #include <limits>
-#undef max
 using namespace std;
+#undef max
 
 #include "Room.h"
 
-void optionType(int bar, HANDLE hConsole) {
-	// Senarai pilihan: 0=Family, 1=Deluxe, 2=Standard, 3=VIP
-	const char* options[] = { "Family", "Deluxe", "Standard", "VIP" };
-	int num_options = 4;
+void Room::optionType(int bar) {
+	const string options[] = { "Family", "Deluxe", "Standard", "VIP" };
+	int num_options = sizeof(options)/ sizeof(*options);
 
 	for (int i = 0; i < num_options; ++i) {
 		if (i > 0) {
-			SetConsoleTextAttribute(hConsole, 7);
-			cout << " | "; // Pemisah antara pilihan
+			removeBackgroundText();
+			cout << " | ";
 		}
 
-		// Serlahkan pilihan semasa (bar == i)
-		if (i == bar) {
-			SetConsoleTextAttribute(hConsole, 46); // Warna Serlah (Contoh: Latar Hijau, Teks Putih)
-		}
-		else {
-			SetConsoleTextAttribute(hConsole, 7);  // Warna Biasa (Contoh: Putih)
-		}
+		if (i == bar) setBackgroundText();
+		else removeBackgroundText();
 
 		cout << options[i];
 	}
 
-	// Pastikan warna dikembalikan kepada standard di hujung baris
-	SetConsoleTextAttribute(hConsole, 7);
+	removeBackgroundText();
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 
-string setName() {
+string Room::setName() {
 	string name;
-	cout << "Name Room : ";
-	getline(cin, name);
-	return name;
+	while (true) {
+		cout << "Name Room : ";
+		getline(cin >> ws, name);
+		if (!name.empty()) {
+			return name;
+		}
+	}
 }
 
-string setType(HANDLE hConsole) {
+string Room::setType() {
 	string type;
 	char choi;
 	int bar = 0;
@@ -50,7 +47,7 @@ string setType(HANDLE hConsole) {
 	while (true) {
 		cout << "Type of Room : ";
 
-		optionType(bar, hConsole);
+		optionType(bar);
 
 		choi = _getch();
 		if (choi == 0 || choi == -32) {
@@ -75,14 +72,25 @@ string setType(HANDLE hConsole) {
 	return type;
 }
 
-double setPrice() {
+double Room::setPrice() {
 	double price;
-	cout << "Price : ";
-	cin >> price;
-	return price;
+
+	while (true) {
+		cout << "Price : ";
+		cin >> price;
+
+		if (!cin.fail() && price >= 0) {
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			return price;
+		}
+
+		cout << "Input tidak sah. Masukkan nombor sahaja.\n";
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
 }
 
-bool sambung() {
+bool Room::sambung() {
 	char c;
 	cout << "Nak sambung? (y/n) : ";
 	cin >> ws >> c;
@@ -101,18 +109,17 @@ bool sambung() {
 
 }
 
-//									 Callback func
-void displayDoneAdd(HANDLE hConsole, function<void(string)> aaa) {
+void Room::displayDoneAdd() {
 	system("cls");
-	SetConsoleTextAttribute(hConsole, 10);
-	aaa("Done Add Room...");
-	SetConsoleTextAttribute(hConsole, 7);
+	setColorText();
+	printLabel("Done Add Room...");
+	removeColorText();
 }
 
 void Room::AddRoom(HANDLE hConsole) {
 	while (true) {
 		system("cls");
-		aaa("Add Room");
+		printLabel("Add Room");
 		ShowAll();
 
 		string name;
@@ -123,7 +130,7 @@ void Room::AddRoom(HANDLE hConsole) {
 
 		cout << "\nMasukkan Detail Room\n";
 		name = setName();
-		type = setType(hConsole);
+		type = setType();
 		price = setPrice();
 
 		totalRoom = totalRoom++;
@@ -149,7 +156,7 @@ void Room::AddRoom(HANDLE hConsole) {
 			temp->link = pNew;
 		}
 
-		displayDoneAdd(hConsole, aaa);
+		displayDoneAdd();
 		ShowAll();
 
 		if (!sambung()) {

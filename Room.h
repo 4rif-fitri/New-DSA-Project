@@ -22,31 +22,26 @@ public:
 	int totalRoom = 0;
 	Node* pHead = nullptr;
 	Node* pCurr;
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	Room() {};
 	~Room() {};
 
+	//Show
+	void ShowRoom();
 	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
+	void printTableDelete(int baris);
+	//Show
 
+	//Add
+	void optionType(int bar);
+	string setName();
+	string setType();
+	double setPrice();
+	bool sambung();
+	void displayDoneAdd();
 	void AddRoom(HANDLE hConsole);
-
-	void cariDanPadam();
-
-	void ShowRoom(HANDLE hConsole);
-
-	void SortRoom(HANDLE hConsole);
-
-	void SearchRoom(HANDLE hConsole);
-
-	void DeleteRoom(HANDLE hConsole);
-
-	void PrintBody(int baris, HANDLE hConsole);
-
-	void InsertDefaultNode(const string& name, double price, const string& type,
-		const string& available = "Yes",
-		const string& checkIn = " - ",
-		const string& checkOut = " - ",
-		const string& paymentStatus = " - ") {
+	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
 
 		Node* pNew = new Node();
 
@@ -77,8 +72,41 @@ public:
 			temp->link = pNew;
 		}
 	}
+	//Add
 
-	void static aaa(string text) {
+	//Sort
+	void SortRoom(HANDLE hConsole);
+	//Sort
+
+	//Search
+	void SearchRoom(HANDLE hConsole);
+	//Search
+
+	//Delete
+	void cariDanPadam();
+	void DeleteRoom(HANDLE hConsole);
+	//Delete
+
+
+	void setColorText() {
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	void removeColorText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+	void setBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 0x1F);
+	}
+	void removeBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+
+
+
+
+	void static printLabel(string text) {
 		char tl = 218; // ┌  
 		char tr = 191; // ┐  
 		char bl = 192; // └  

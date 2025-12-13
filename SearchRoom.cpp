@@ -8,9 +8,9 @@
 using namespace std;
 #include "Room.h"
 
-void showMenuCari(string listCari[], int baris, int length, HANDLE hConsole, function<void(string)>aaa) {
+void showMenuCari(string listCari[], int baris, int length, HANDLE hConsole, function<void(string)>printLabel) {
 	system("cls");
-	aaa("Carian");
+	printLabel("Carian");
 
 	for (int i = 0; i < length; i++){
 		bool selected = (i == baris);
@@ -25,7 +25,7 @@ void showMenuCari(string listCari[], int baris, int length, HANDLE hConsole, fun
 		SetConsoleTextAttribute(hConsole, 7);
 	}
 	cout << endl;
-	aaa("Guna Arow Up Or Down To Select");
+	printLabel("Guna Arow Up Or Down To Select");
 	cout << "Pess ESC dua kali to Back";
 
 }
@@ -86,7 +86,7 @@ void Room::SearchRoom(HANDLE hConsole) {
 	char arrow;
 
 	while (true){
-		showMenuCari(listCari ,baris, length, hConsole, aaa);
+		showMenuCari(listCari ,baris, length, hConsole, printLabel);
 		arrow = _getch();
 		if (arrow == 27) break;
 

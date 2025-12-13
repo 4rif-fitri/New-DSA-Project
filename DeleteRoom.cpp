@@ -2,7 +2,7 @@
 using namespace std;
 #include "Room.h"
 
-void Room::PrintBody(int baris, HANDLE hConsole) {
+void Room::printTableDelete(int baris) {
 	system("cls");
 
 	char tl = 218; // ┌  
@@ -120,26 +120,24 @@ void Room::cariDanPadam() {
 
 void Room::DeleteRoom(HANDLE hConsole) {
 	char choice = -1;
-	int baris = 0; // Mula pada indeks 0 (item pertama)
+	int baris = 0;
 
 	while (true) {
-		// Pastikan kita tidak cuba memaparkan sesuatu jika senarai kosong
+
+		//kalau link list kosong
 		if (pHead == nullptr) {
 			system("cls");
-			aaa("Delete Room");
-			SetConsoleTextAttribute(hConsole, 12);
-			cout << "\nTiada bilik untuk dipadamkan (Senarai Kosong).";
-			SetConsoleTextAttribute(hConsole, 7);
-			_getch();
+			printLabel("Delete Room");
+			setBackgroundText();
+			cout << "\nSenarai Kosong.";
+			removeBackgroundText();
 			break;
 		}
 
 		// Pastikan baris tidak melebihi indeks terakhir jika totalRoom berubah
-		if (totalRoom > 0) {
-			baris = baris % totalRoom;
-		}
+		if (totalRoom > 0) baris = baris % totalRoom;
 
-		PrintBody(baris, hConsole);
+		printTableDelete(baris);
 		choice = _getch();
 
 		if (choice == 27) break; // ESC untuk keluar
@@ -208,7 +206,7 @@ void Room::DeleteRoom(HANDLE hConsole) {
 				else {
 					baris = 0; // Jika senarai kosong, baris reset ke 0
 				}
-				PrintBody(baris, hConsole);
+				printTableDelete(baris);
 
 				SetConsoleTextAttribute(hConsole, 10);
 				cout << "\nBilik Nombor " << deletedRoomNumber << " berjaya dipadamkan!";

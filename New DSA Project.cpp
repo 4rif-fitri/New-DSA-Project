@@ -5,8 +5,7 @@
 using namespace std;
 #include "Room.h"
 
-
-void  aaa(string text) {
+void  printLabel(string text) {
 	char tl = 218; // ┌
 	char tr = 191; // ┐
 	char bl = 192; // └
@@ -27,12 +26,12 @@ void  aaa(string text) {
 	cout << br << endl << endl;
 }
 
-void static home(string MenuList[], int Length, int Baris, HANDLE hConsole) {
+void static printHome(string MenuList[], int Length, int Baris, HANDLE hConsole) {
 	system("cls");
 
-	aaa("Resort Pasific Sumatra Booking");
+	printLabel("Resort Pasific Sumatra Booking");
 
-	for (size_t i = 0; i < Length; i++) {
+	for (int i = 0; i < Length; i++) {
 		bool selected = (i == Baris);
 
 		if (selected) {
@@ -47,7 +46,7 @@ void static home(string MenuList[], int Length, int Baris, HANDLE hConsole) {
 	SetConsoleTextAttribute(hConsole, 7);
 
 	cout << endl;
-	aaa("Guna Arow Up Or Down To Select");
+	printLabel("Guna Arow Up Or Down To Select");
 
 }
 
@@ -80,7 +79,7 @@ void main() {
 	char choice;
 
 	while (true) {
-		home(menuList, length, baris, hConsole);
+		printHome(menuList, length, baris, hConsole);
 		choice = _getch();
 
 		if (choice == 27) break;
@@ -98,24 +97,12 @@ void main() {
 
 		if (choice == 13) {
 			system("cls");
-			if (baris == 0) {
-				room.AddRoom(hConsole);
-			}
-			else if (baris == 1) {
-				room.ShowRoom(hConsole);
-			}
-			else if (baris == 2) {
-				room.SortRoom(hConsole);
-			}
-			else if (baris == 3) {
-				room.SearchRoom(hConsole);
-			}
-			else if (baris == 4) {
-				room.DeleteRoom(hConsole);
-			}
-			else if (baris == 5) {
-				break;
-			}
+			if (baris == 0)		 room.AddRoom(hConsole);
+			else if (baris == 1) room.ShowRoom();
+			else if (baris == 2) room.SortRoom(hConsole);
+			else if (baris == 3) room.SearchRoom(hConsole);
+			else if (baris == 4) room.DeleteRoom(hConsole);
+			else if (baris == 5) break;
 
 			_getch();
 		}
