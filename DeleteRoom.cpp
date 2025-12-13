@@ -111,6 +111,11 @@ void Room::PrintBody(int baris, HANDLE hConsole) {
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << sss << endl;
 
+	cout << "\nTekan ESC dua kali untuk back";
+}
+
+void Room::cariDanPadam() {
+
 }
 
 void Room::DeleteRoom(HANDLE hConsole) {
@@ -156,7 +161,6 @@ void Room::DeleteRoom(HANDLE hConsole) {
 		if (choice == 13) { // ENTER ditekan
 			system("cls");
 			// Paparkan bilik yang dipilih sebelum memadam
-			PrintBody(baris, hConsole);
 
 			int indexToFind = baris; // Indeks 0, 1, 2, ...
 			int deletedRoomNumber = -1; // Untuk menyimpan ID bilik yang dipadam
@@ -204,6 +208,7 @@ void Room::DeleteRoom(HANDLE hConsole) {
 				else {
 					baris = 0; // Jika senarai kosong, baris reset ke 0
 				}
+				PrintBody(baris, hConsole);
 
 				SetConsoleTextAttribute(hConsole, 10);
 				cout << "\nBilik Nombor " << deletedRoomNumber << " berjaya dipadamkan!";
@@ -220,5 +225,4 @@ void Room::DeleteRoom(HANDLE hConsole) {
 			_getch();
 		}
 	}
-	cout << "\nTekan sebarang kekunci untuk kembali ke Menu Utama.";
 }

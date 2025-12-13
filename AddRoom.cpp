@@ -55,15 +55,15 @@ string setType(HANDLE hConsole) {
 		choi = _getch();
 		if (choi == 0 || choi == -32) {
 			switch (_getch()) {
-			case 75: // KIRI (LEFT ARROW)
+			case 75: // (LEFT ARROW)
 				bar = (bar == 0) ? MAX_CHOICE : bar - 1;
 				break;
-			case 77: // KANAN (RIGHT ARROW)
+			case 77: // (RIGHT ARROW)
 				bar = (bar == MAX_CHOICE) ? 0 : bar + 1;
 				break;
 			}
 		}
-		if (choi == 13) { // ENTER ditekan
+		if (choi == 13) { // ENTER
 			if (bar == 0) type = "Family";
 			else if (bar == 1) type = "Deluxe";
 			else if (bar == 2) type = "Standard";
@@ -155,7 +155,6 @@ void Room::AddRoom(HANDLE hConsole) {
 		if (!sambung()) {
 			break;
 		}
-
 	}
 	cout << "Pess ESC to back";
 }

@@ -5,11 +5,12 @@ void Room::SortRoom(HANDLE hConsole) {
     system("cls");
     aaa("Sort Room by Price");
 
-    if (pHead == nullptr || pHead->link == nullptr) {
-        SetConsoleTextAttribute(hConsole, 12);
-        cout << "Tidak cukup bilik untuk diisih (Kurang dari 2 bilik).";
-        SetConsoleTextAttribute(hConsole, 7);
-        _getch();
+    if (totalRoom == 1) {
+        ShowAll();
+        //SetConsoleTextAttribute(hConsole, 12);
+        cout << "No Need To sort kerana room ada satu";
+        //SetConsoleTextAttribute(hConsole, 7);
+        cout << "\nTekan ESC to Back";
         return;
     }
 
@@ -55,14 +56,13 @@ void Room::SortRoom(HANDLE hConsole) {
         }
         end = curr;
     } while (swapped);
-    // --- Tamat Bubble Sort Menukar Pointers ---
 
     SetConsoleTextAttribute(hConsole, 10);
-    cout << "Bilik berjaya diisih mengikut Harga (Termurah ke Termahal). Susunan Link asal diubah.\n\n";
+    cout << "Sort By Harga (Termurah ke Termahal)\n\n";
     SetConsoleTextAttribute(hConsole, 7);
 
-    ShowAll(); // Paparkan senarai yang telah diisih
+    ShowAll();
 
-    cout << "\nTekan sebarang kekunci untuk kembali ke Menu Utama.";
+    cout << "\nTekan ESC to Back";
     _getch();
 }

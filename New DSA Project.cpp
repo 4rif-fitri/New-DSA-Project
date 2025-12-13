@@ -37,7 +37,7 @@ void static home(string MenuList[], int Length, int Baris, HANDLE hConsole) {
 
 		if (selected) {
 			SetConsoleTextAttribute(hConsole, 46);
-			cout << " >" << MenuList[i] << endl;
+			cout << "> " << MenuList[i] << endl;
 		}
 		else {
 			SetConsoleTextAttribute(hConsole, 7);
@@ -60,30 +60,25 @@ void main() {
 	string menuList[] = {
 		"Add Room",
 		"Show Table Room",
-		"Sort Room",
-		"Search Room",
+		"Sort Room By harga",
+		"Search Room By Room Number Or Price",
 		"Delete Room",
 		"Exit",
 	};
 
 	room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
 		"Booked", "2025/12/10", "2025/12/15", "Paid");
-
-	// Bilik 2: Tersedia (Available)
 	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
 		"Yes");
-
-	// Bilik 3: Sudah Ditempah (mameng)
 	room.InsertDefaultNode("Family Hall A", 480.00, "Family",
 		"Booked", "2025/12/12", "2025/12/14", "Deposit");
-
-	// Bilik 4: Tersedia (Available)
 	room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
 		"Yes");
 
 	int length = sizeof(menuList) / sizeof(*menuList);
 	int baris = 0;
 	char choice;
+
 	while (true) {
 		home(menuList, length, baris, hConsole);
 		choice = _getch();

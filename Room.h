@@ -26,7 +26,11 @@ public:
 	Room() {};
 	~Room() {};
 
+	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
+
 	void AddRoom(HANDLE hConsole);
+
+	void cariDanPadam();
 
 	void ShowRoom(HANDLE hConsole);
 
@@ -200,4 +204,5 @@ public:
 		for (int i = 0; i < 14; i++) cout << hor;
 		cout << sss << endl;
 	}
+
 };
