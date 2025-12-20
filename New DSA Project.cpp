@@ -11,7 +11,7 @@ void printHome(string MenuList[], int Length, int Baris, Room room) {
 		bool selected = (i == Baris);
 
 		if (selected) {
-			room.setBackgroundText();
+			room.setBackgroundText("merah");
 			cout << "> " << MenuList[i] << endl;
 		}
 		else {

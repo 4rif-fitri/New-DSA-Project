@@ -2,7 +2,6 @@
 
 void Room::optionType(int colum, string options[],int count_pilihan) {
 
-
 	for (int i = 0; i < count_pilihan; ++i) {
 		if (i > 0) {
 			removeBackgroundText();

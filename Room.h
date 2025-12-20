@@ -210,6 +210,42 @@ public:
 	void removeBackgroundText() {
 		SetConsoleTextAttribute(hConsole, 7);
 	}
+
+	int getTextCode(string text) {
+		int code = -1;
+
+		if (text == "merah") code = 1;
+		else if (text == "biru") code = 2;
+		else if (text == "cyan") code = 3;
+		else if (text == "kuning") code = 4;
+		else if (text == "hijau") code = 5;
+		else if (text == "hitam") code = 6;
+		else if (text == "putih") code = 7;
+
+		return code;
+	}
+
+	int getBackCode(string text) {
+		int code = -1;
+
+		if (text == "merah") code = BACKGROUND_RED;
+		else if (text == "biru") code = BACKGROUND_BLUE;
+		else if (text == "cyan") code = BACKGROUND_GREEN | BACKGROUND_BLUE;
+		else if (text == "kuning") code = BACKGROUND_RED | BACKGROUND_GREEN;
+		else if (text == "hijau") code = BACKGROUND_GREEN;
+		else if (text == "hitam") code = 0;
+		else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+
+		return code;
+	}
+
+	void setColorText(string warna) {
+		SetConsoleTextAttribute(hConsole, getTextCode(warna));
+	}
+
+	void setBackgroundText(string warna) {
+		SetConsoleTextAttribute(hConsole, getBackCode(warna));
+	}
 	// Utiliti
 
 	//Show implementation
