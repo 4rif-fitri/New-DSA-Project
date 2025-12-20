@@ -44,42 +44,31 @@ public:
 	Room() {};
 	~Room() {};
 
-
-
 	// Utiliti cam guna banyak kali tampa batas
 	void printLabel(string text);
-
 	void printLabel(string text1, string text2);
-
-	void printHeaderTable();
 	
+	void printHeaderTable();
 	void printBodyTable(Node* temps);
-
 	void printFooterTable();
-
+	
 	void ShowAll();
 
 	double getDoublee(string textInput, string textError);
-
 	double getIntt(string textInput, string textError);
-
 	string getStringg(string textInput, string textError);
 
-	void setColorText();
-	
-	void removeColorText();
-
-	void setBackgroundText();
-
-	void removeBackgroundText();
-
 	int getTextCode(string text);
-
 	int getBackCode(string text);
-
+	
+	void setColorText();
+	void removeColorText();
+	void setBackgroundText();
+	void removeBackgroundText();
+	
 	void setColorText(string warna);
-
 	void setBackgroundText(string warna);
+
 	// Utiliti
 
 	//Show implementation
