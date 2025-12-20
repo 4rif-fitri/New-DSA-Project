@@ -132,6 +132,22 @@ public:
 		printFooterTable();
 
 	}
+
+	void setColorText() {
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	
+	void removeColorText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+	void setBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 0x1F);
+	}
+
+	void removeBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
 	//Utiliti
 
 	//Show implementation
@@ -141,7 +157,7 @@ public:
 	//Show implementation
 
 	//Add implementation
-	void optionType(int bar);
+	void optionType(int colum, string options[], int count_pilihan);
 	string setName();
 	string setType();
 	double setPrice();
@@ -217,25 +233,4 @@ public:
 
 	void DeleteRoom();
 	//Delete implementation
-
-
-	void setColorText() {
-		SetConsoleTextAttribute(hConsole, 10);
-	}
-	void removeColorText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-
-	void setBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 0x1F);
-	}
-	void removeBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-
-
-
-
-
-
 };
