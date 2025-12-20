@@ -1,12 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <windows.h>
-#include <conio.h>
-#include <string>
-#include <functional>
-#undef max
-
-using namespace std;
 #include "Room.h"
 
 // Mencari titik tengah dalam Linked List

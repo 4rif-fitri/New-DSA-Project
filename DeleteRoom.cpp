@@ -1,6 +1,4 @@
-﻿#include <iostream>
-using namespace std;
-#include "Room.h"
+﻿#include "Room.h"
 
 void Room::printTableDelete(int baris) {
 	system("cls");

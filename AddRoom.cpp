@@ -1,11 +1,3 @@
-#include <iomanip>
-#include <iostream>
-#include <windows.h>
-#include <string>
-#include <limits>
-using namespace std;
-#undef max
-
 #include "Room.h"
 
 void Room::optionType(int colum, string options[],int count_pilihan) {

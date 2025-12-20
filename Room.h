@@ -2,11 +2,12 @@
 #include <iomanip>
 #include <windows.h>
 #include <conio.h>
-#include <functional>
+#include <functional> 
 #include <string>
+#include <limits>
 #undef max
-
 using namespace std;
+
 class Room {
 public:
 	class Node {

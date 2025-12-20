@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Room.h"
 
 // Fungsi nod terakhir
