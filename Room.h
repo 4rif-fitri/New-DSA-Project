@@ -28,23 +28,23 @@ public:
 	Node* pCurr;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	char tl = 218; // ┌  
-	char tr = 191; // ┐  
-	char bl = 192; // └	  
-	char br = 217; // ┘  
-	char hor = 196; // ─  
-	char ver = 179; // │  
-	char th = 195;  // ├  
-	char th_right = 180; // ┤  
-	char tee_top = 194;//┬
-	char aaa = 193;//└
-	char sss = 217; //┘
-	char ddd = 197;//┼
+	char tl = 218;			// ┌  
+	char tr = 191;			// ┐  
+	char bl = 192;			// └	  
+	char br = 217;			// ┘  
+	char hor = 196;			// ─  
+	char ver = 179;			// │  
+	char th = 195;			// ├  
+	char th_right = 180;	// ┤  
+	char tee_top = 194;		// ┬
+	char aaa = 193;			// └
+	char sss = 217;			// ┘
+	char ddd = 197;			// ┼
 
 	Room() {};
 	~Room() {};
 
-	// Utiliti cam guna banyak kali tampa batas
+	// Utiliti cam guna banyak kali tampa batas ================
 	void printLabel(string text);
 	void printLabel(string text1, string text2);
 	
@@ -74,19 +74,19 @@ public:
 
 	void optionType(int colum, string options[], int count_pilihan);
 	string getType(string optionss[], int count_pilihan);
-	// Utiliti
+	// Utiliti ================
 
-	//Show implementation
+	//Show implementation ================
 	void ShowRoom();
 	void printTableDelete(int baris);
-	//Show implementation
+	//Show implementation  ================
 
-	//Add implementation
+	//Add implementation ================
 	void displayDoneAdd();
 	void AddRoom();
-	//Add implementation
+	//Add implementation ================
 
-	//Sort implementation
+	//Sort implementation ================
 	void getTail(Node* cur, Node*& tail);
 	void partition(
 		Node* head, 
@@ -98,16 +98,16 @@ public:
 	void quickSortRecursive(Node*& headRef, Node* end);
 	void quickSort();
 	void SortRoom();
-	//Sort implementation
+	//Sort implementation ================
 
-	//Search implementation
+	//Search implementation ================
 	void sequentialSearch(double hargaCarian);
 	void binarySearch(double hargaCarian);
 	void showMenuCari(string listCari[], int baris, int length);
 	void SearchRoom();
-	//Search implementation
+	//Search implementation ================
 
-	//Delete implementation
+	//Delete implementation ================
 	void padam(
 		bool found,
 		Node* &pHead,
@@ -128,7 +128,7 @@ public:
 	);
 
 	void DeleteRoom();
-	//Delete implementation
+	//Delete implementation ================
 
 
 	//remove

@@ -88,4 +88,5 @@ void Room::SortRoom() {
     }
     ShowAll();
     cout << "\nTekan Esc untuk back";
+    _getch();
 }

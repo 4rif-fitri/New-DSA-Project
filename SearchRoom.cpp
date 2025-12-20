@@ -68,6 +68,7 @@ void Room::binarySearch(double hargaCarian) {
         if (mid->price == hargaCarian) {
             cout << "JUMPA (Binary):" << endl;
             ShowOne(mid);
+            found = true;
             break;
         }
         else if (mid->price < hargaCarian) {

@@ -11,7 +11,7 @@ void printHome(string MenuList[], int Length, int Baris, Room room) {
 		bool selected = (i == Baris);
 
 		if (selected) {
-			room.setBackgroundText("merah");
+			room.setBackgroundText("cyan");
 			cout << "> " << MenuList[i] << endl;
 		}
 		else {
@@ -27,9 +27,7 @@ void printHome(string MenuList[], int Length, int Baris, Room room) {
 }
 
 void main() {
-
 	Room room;
-
 
 	string menuList[] = {
 		"Add Room",
@@ -57,7 +55,7 @@ void main() {
 		printHome(menuList, length, baris, room);
 		choice = _getch();
 
-		if (choice == 27) break;
+		if (choice == 27) break; 
 
 		if (choice == 0 || choice == -32) {
 			switch (_getch()) {
@@ -78,11 +76,13 @@ void main() {
 			else if (baris == 3) room.SearchRoom();
 			else if (baris == 4) room.DeleteRoom();
 			else if (baris == 5) break;
-
-			_getch();
 		}
 	}
 
 	system("cls");
+	room.setBackgroundText("kuning");
 	cout << "\n\n" << "Program Tamat " << "\n\n";
+	room.setBackgroundText("hitam");
+	room.setColorText("putih");
+
 }

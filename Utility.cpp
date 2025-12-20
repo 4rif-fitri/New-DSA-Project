@@ -1,15 +1,21 @@
 #include "Room.h"
 
 void Room::printLabel(string text) {
+
 	cout << tl;
 	for (int i = 0; i < 30; i++) cout << hor;
 	cout << endl;
 
-	cout << ver << setw(16) << text << endl;
+	cout << ver;
+	setBackgroundText("putih");
+	cout << setw(16) << text << endl;
+	setBackgroundText("hitam");
+	setColorText("putih");
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
 	cout << endl << endl;
+
 }
 
 void Room::printLabel(string text1, string text2) {
@@ -172,13 +178,12 @@ void Room::removeBackgroundText() {
 int Room::getTextCode(string text) {
 	int code = -1;
 
-	if (text == "merah") code = 1;
-	else if (text == "biru") code = 2;
-	else if (text == "cyan") code = 3;
-	else if (text == "kuning") code = 4;
-	else if (text == "hijau") code = 5;
-	else if (text == "hitam") code = 6;
-	else if (text == "putih") code = 7;
+	if (text == "merah")        code = FOREGROUND_RED;
+	else if (text == "biru")   code = FOREGROUND_BLUE;
+	else if (text == "cyan")   code = FOREGROUND_GREEN | FOREGROUND_BLUE;
+	else if (text == "kuning") code = FOREGROUND_RED | FOREGROUND_GREEN;
+	else if (text == "hitam")  code = 0;
+	else if (text == "putih")  code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
 
 	return code;
 }
@@ -190,7 +195,6 @@ int Room::getBackCode(string text) {
 	else if (text == "biru") code = BACKGROUND_BLUE;
 	else if (text == "cyan") code = BACKGROUND_GREEN | BACKGROUND_BLUE;
 	else if (text == "kuning") code = BACKGROUND_RED | BACKGROUND_GREEN;
-	else if (text == "hijau") code = BACKGROUND_GREEN;
 	else if (text == "hitam") code = 0;
 	else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
 

@@ -2,6 +2,7 @@
 
 void Room::printTableDelete(int baris) {
 	system("cls");
+	printLabel("Padam Table");
 
 	printHeaderTable();
 
@@ -27,8 +28,9 @@ void Room::printTableDelete(int baris) {
 	removeBackgroundText();
 
 	printFooterTable();
+	printLabel("Select guna arrow Up/Down and Enter untuk padam");
 
-	cout << "\nTekan Esc dua kali untuk back";
+	cout << "Tekan Esc dua kali untuk back";
 }
 
 void Room::padam(
