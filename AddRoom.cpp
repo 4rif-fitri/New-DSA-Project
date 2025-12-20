@@ -18,7 +18,6 @@ void Room::optionType(int colum, string options[],int count_pilihan) {
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 
-
 string Room::getType() {
 	string options[] = { "Family", "Deluxe", "Standard", "VIP" };
 	int count_pilihan = sizeof(options) / sizeof(*options);

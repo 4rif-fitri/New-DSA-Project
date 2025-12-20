@@ -103,6 +103,12 @@ void Room::ShowAll() {
 
 }
 
+void Room::ShowOne(Node* one) {
+	printHeaderTable();
+	printBodyTable(one);
+	printFooterTable();
+}
+
 double Room::getDoublee(string textInput, string textError) {
 	double input;
 	while (true) {

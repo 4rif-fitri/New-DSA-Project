@@ -53,6 +53,7 @@ public:
 	void printFooterTable();
 	
 	void ShowAll();
+	void ShowOne(Node* one);
 
 	double getDoublee(string textInput, string textError);
 	double getIntt(string textInput, string textError);

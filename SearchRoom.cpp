@@ -44,7 +44,7 @@ void Room::sequentialSearch(double hargaCarian) {
     while (curr != nullptr) {
         if (curr->price == hargaCarian) {
             cout << "JUMPA (Sequential):" << endl;
-            cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
+            ShowOne(curr);
             found = true;
             break;
         }
@@ -67,7 +67,7 @@ void Room::binarySearch(double hargaCarian) {
 
         if (mid->price == hargaCarian) {
             cout << "JUMPA (Binary):" << endl;
-            cout << "No Bilik: " << mid->roomNumber << " | Nama: " << mid->name << " | Harga: RM" << mid->price << endl;
+            ShowOne(mid);
             break;
         }
         else if (mid->price < hargaCarian) {
