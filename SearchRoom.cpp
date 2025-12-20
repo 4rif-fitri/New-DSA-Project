@@ -9,9 +9,7 @@
 using namespace std;
 #include "Room.h"
 
-// --- Fungsi Helper untuk Binary Search ---
 // Mencari titik tengah dalam Linked List
-
 Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
     if (start == nullptr) return nullptr;
     Room::Node* slow = start;
@@ -48,68 +46,62 @@ void Room::showMenuCari(string listCari[], int baris, int length) {
                 "Esc untuk back");
 }
 
-// --- Logik Carian (Sequential & Binary) ---
-void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
-    system("cls");
-    printLabel("HASIL CARIAN");
+void Room::sequentialSearch(int roomNumber) {
+    // SEQUENTIAL SEARCH:
 
-    if (typeFind == "number") {
-        // SEQUENTIAL SEARCH:
+    Node* curr = pHead;
+    bool found = false;
 
+    while (curr != nullptr) {
+        if (curr->roomNumber == roomNumber) {
+            cout << "JUMPA (Sequential):" << endl;
+            cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
+            found = true;
+            break;
+        }
+        curr = curr->link;
+    }
+    if (!found) cout << "Ralat: Nombor bilik " << roomNumber << " tidak ditemui." << endl;
+}
+
+void Room::binarySearch(double hargaCarian) {
+    // BINARY SEARCH: Lebih laju untuk harga (Mesti Sorted)
+
+    Node* start = pHead;
+    Node* last = nullptr;
+    bool found = false;
+
+    while (start != last) {
+        Node* mid = getMiddle(start, last);
+        if (mid == nullptr) break;
+
+        if (mid->price == hargaCarian) {
+            cout << "JUMPA (Binary):" << endl;
+            cout << "No Bilik: " << mid->roomNumber << " | Nama: " << mid->name << " | Harga: RM" << mid->price << endl;
+            found = true;
+            break;
+        }
+        else if (mid->price < hargaCarian) {
+            start = mid->link;
+        }
+        else {
+            last = mid;
+        }
+    }
+
+    // Fallback: Jika Binary tak jumpa (mungkin list belum sorted), guna Sequential
+    if (!found) {
         Node* curr = pHead;
-        bool found = false;
-
         while (curr != nullptr) {
-            if (curr->roomNumber == dataCarian) {
+            if (curr->price == hargaCarian) {
                 cout << "JUMPA (Sequential):" << endl;
                 cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
                 found = true;
-                break;
             }
             curr = curr->link;
         }
-        if (!found) cout << "Ralat: Nombor bilik " << dataCarian << " tidak ditemui." << endl;
-
     }
-    else if (typeFind == "price") {
-        // BINARY SEARCH: Lebih laju untuk harga (Mesti Sorted)
-
-        Node* start = pHead;
-        Node* last = nullptr;
-        bool found = false;
-
-        while (start != last) {
-            Node* mid = getMiddle(start, last);
-            if (mid == nullptr) break;
-
-            if (mid->price == hargaCarian) {
-                cout << "JUMPA (Binary):" << endl;
-                cout << "No Bilik: " << mid->roomNumber << " | Nama: " << mid->name << " | Harga: RM" << mid->price << endl;
-                found = true;
-                break;
-            }
-            else if (mid->price < hargaCarian) {
-                start = mid->link;
-            }
-            else {
-                last = mid;
-            }
-        }
-
-        // Fallback: Jika Binary tak jumpa (mungkin list belum sorted), guna Sequential
-        if (!found) {
-            Node* curr = pHead;
-            while (curr != nullptr) {
-                if (curr->price == hargaCarian) {
-                    cout << "JUMPA (Sequential):" << endl;
-                    cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
-                    found = true;
-                }
-                curr = curr->link;
-            }
-        }
-        if (!found) cout << "Ralat: Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
-    }
+    if (!found) cout << "Ralat: Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
 }
 
 void Room::SearchRoom() {
@@ -141,12 +133,14 @@ void Room::SearchRoom() {
 
         if (arrow == 13) { // Enter
             system("cls");
+            printLabel("HASIL CARIAN");
+
             if (baris == 0) {
                 int numberRoom;
 
                 numberRoom = getIntt("Masukkan Price Room : ",
                     "Input tidak sah. Sila masukkan nombor >= 0");
-                printTableFind("number", numberRoom, 0.0);
+                sequentialSearch(numberRoom);
             
             }else if (baris == 1) {
             
@@ -154,7 +148,7 @@ void Room::SearchRoom() {
                 
                 priceRoom = getDoublee("Masukkan Price Room : ",
                     "Input tidak sah. Sila masukkan nombor >= 0");
-                printTableFind("price", 0, priceRoom);
+                binarySearch(priceRoom);
             
             }
 

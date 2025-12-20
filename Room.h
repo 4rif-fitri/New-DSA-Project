@@ -43,39 +43,7 @@ public:
 	Room() {};
 	~Room() {};
 
-	//remove
-	void InsertDefaultNode(const string& name, double price, const string& type, const string& available = "Yes", const string& checkIn = " - ", const string& checkOut = " - ", const string& paymentStatus = " - ") {
 
-		Node* pNew = new Node();
-
-		totalRoom++;
-
-		pNew->roomNumber = totalRoom;
-		pNew->name = name;
-		pNew->price = price;
-		pNew->type = type;
-
-		// Guna parameter yang baru dimasukkan
-		pNew->isaVailable = available;
-		pNew->dateChackIn = checkIn;
-		pNew->dateChackOut = checkOut;
-		pNew->payment = paymentStatus;
-
-		pNew->link = nullptr;
-
-		// Logik Linked List (sama seperti sebelum ini)
-		if (pHead == nullptr) {
-			pHead = pNew;
-		}
-		else {
-			Node* temp = pHead;
-			while (temp->link != nullptr) {
-				temp = temp->link;
-			}
-			temp->link = pNew;
-		}
-	}
-	//remove
 
 	// Utiliti cam guna banyak kali tampa batas
 	void printLabel(string text) {
@@ -255,9 +223,6 @@ public:
 	bool sambung();
 	void displayDoneAdd();
 	void AddRoom();
-
-
-	
 	//Add implementation
 
 	//Sort implementation
@@ -265,6 +230,8 @@ public:
 	//Sort implementation
 
 	//Search implementation
+	void sequentialSearch(int roomNumber);
+	void binarySearch(double hargaCarian);
 	void showMenuCari(string listCari[], int baris, int length);
 	void SearchRoom();
 	//Search implementation
@@ -280,7 +247,6 @@ public:
 		int& indexToFind
 	);
 
-
 	void cari(
 		int& counter, 
 		int& indexToFind, 
@@ -294,6 +260,38 @@ public:
 	//Delete implementation
 
 
+	//remove
+	void InsertDefaultNode(const string& name, double price, const string& type, const string& available = "Yes", const string& checkIn = " - ", const string& checkOut = " - ", const string& paymentStatus = " - ") {
 
+		Node* pNew = new Node();
+
+		totalRoom++;
+
+		pNew->roomNumber = totalRoom;
+		pNew->name = name;
+		pNew->price = price;
+		pNew->type = type;
+
+		// Guna parameter yang baru dimasukkan
+		pNew->isaVailable = available;
+		pNew->dateChackIn = checkIn;
+		pNew->dateChackOut = checkOut;
+		pNew->payment = paymentStatus;
+
+		pNew->link = nullptr;
+
+		// Logik Linked List (sama seperti sebelum ini)
+		if (pHead == nullptr) {
+			pHead = pNew;
+		}
+		else {
+			Node* temp = pHead;
+			while (temp->link != nullptr) {
+				temp = temp->link;
+			}
+			temp->link = pNew;
+		}
+	}
+	//remove
 
 };
