@@ -98,6 +98,7 @@ void Room::DeleteRoom() {
 			setBackgroundText();
 			cout << "\nSenarai Kosong.";
 			removeBackgroundText();
+			printTableDelete(baris);
 			break;
 		}
 
@@ -138,7 +139,7 @@ void Room::DeleteRoom() {
 
 			cari(counter, indexToFind, found, deletedRoomNumber, pPrev, pCurr);
 			padam(found, pHead, pPrev, pCurr, baris, deletedRoomNumber, indexToFind);
-			_getch();
+			cout << endl;
 		}
 	}
 }

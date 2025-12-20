@@ -68,11 +68,13 @@ void Room::quickSortRecursive(Node*& headRef, Node* end) {
     // Update head asal dengan head baru yang sudah disusun
     headRef = newHead;
 }
+
 void Room::quickSort() {
     Node* tail = nullptr;
     getTail(pHead, tail);
     quickSortRecursive(pHead, tail);
 }
+
 void Room::SortRoom() {
     system("cls");
     printLabel("Sort Room by Price using quickSort");

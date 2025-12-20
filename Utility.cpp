@@ -83,10 +83,9 @@ void Room::printFooterTable() {
 }
 
 void Room::ShowAll() {
-	Node* temps = pHead;
-	int i = 1;
-
 	printHeaderTable();
+
+	Node* temps = pHead;
 
 	if (totalRoom == 0) {
 		cout << ver << setw(120) << ver << endl;
@@ -97,7 +96,6 @@ void Room::ShowAll() {
 		while (temps != nullptr) {
 			printBodyTable(temps);
 			temps = temps->link;
-			i++;
 		}
 
 	}
