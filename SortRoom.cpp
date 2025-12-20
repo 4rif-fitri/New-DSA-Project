@@ -1,69 +1,87 @@
 #include "Room.h"
 
-// Fungsi nod terakhir
-Room::Node* getTail(Room::Node* cur) {
-    while (cur != nullptr && cur->link != nullptr) cur = cur->link;
-    return cur;
+void Room::getTail(Node* cur, Node*& tail) {
+    if (cur == nullptr) { // if kosong
+        tail = nullptr;
+        return;
+    }
+    while (cur->link != nullptr) cur = cur->link;
+    tail = cur;
 }
 
-// Fungsi (Partition)
-Room::Node* partition(Room::Node* head, Room::Node* end, Room::Node*& newHead, Room::Node*& newEnd) {
-    Room::Node* pivot = end;
-    Room::Node* prev = nullptr, * cur = head, * tail = pivot;
+void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut) {
+    Node* pivot = end;
+    Node* prev = nullptr, * cur = head, * tail = pivot;
+
+    newHead = nullptr; // Reset sebelum guna
 
     while (cur != pivot) {
-        if (cur->price < pivot->price) { // Susun Ascending (Murah ke Mahal)
+        if (cur->price < pivot->price) {
             if (newHead == nullptr) newHead = cur;
             prev = cur;
             cur = cur->link;
         }
         else {
             if (prev) prev->link = cur->link;
-            Room::Node* tmp = cur->link;
+            Node* tmp = cur->link;
             cur->link = nullptr;
             tail->link = cur;
             tail = cur;
             cur = tmp;
         }
     }
+
     if (newHead == nullptr) newHead = pivot;
     newEnd = tail;
-    return pivot;
+    pivotOut = pivot; // Hantar alamat pivot keluar melalui reference
 }
 
-Room::Node* quickSortRecursive(Room::Node* head, Room::Node* end) {
-    if (!head || head == end) return head;
+void Room::quickSortRecursive(Node*& headRef, Node* end) {
+    // Base case: jika list kosong atau cuma ada 1 node
+    if (!headRef || headRef == end) return;
 
-    Room::Node* newHead = nullptr, * newEnd = nullptr;
-    Room::Node* pivot = partition(head, end, newHead, newEnd);
+    Node* newHead = nullptr; 
+    Node* newEnd = nullptr;
+    Node* pivot = nullptr;
 
+    // Partition: headRef akan dikemaskini melalui newHead
+    partition(headRef, end, newHead, newEnd, pivot);
+
+    // Jika pivot bukan nod terkecil, susun bahagian kiri
     if (newHead != pivot) {
-        Room::Node* tmp = newHead;
+        Node* tmp = newHead;
         while (tmp->link != pivot) tmp = tmp->link;
-        tmp->link = nullptr;
+        tmp->link = nullptr; // Putuskan hubungan untuk rekursi kiri
 
-        newHead = quickSortRecursive(newHead, tmp);
-        tmp = getTail(newHead);
-        tmp->link = pivot;
+        quickSortRecursive(newHead, tmp);
+
+        // Sambung semula bahagian kiri dengan pivot
+        Node* tailKiri = nullptr;
+        getTail(newHead, tailKiri);
+        tailKiri->link = pivot;
     }
-    pivot->link = quickSortRecursive(pivot->link, newEnd);
-    return newHead;
+
+    // Susun bahagian kanan
+    quickSortRecursive(pivot->link, newEnd);
+
+    // Update head asal dengan head baru yang sudah disusun
+    headRef = newHead;
 }
 
 void Room::SortRoom() {
     system("cls");
-    printLabel("Sort Room by Price");
+    printLabel("Sort Room by Price using quickSort");
 
     if (pHead == nullptr || pHead->link == nullptr) {
         cout << "Bilik tidak mencukupi untuk disusun." << endl;
     }
     else {
-        pHead = quickSortRecursive(pHead, getTail(pHead));
-        setColorText();
+        Node* tail = nullptr;
+        getTail(pHead, tail);
+        quickSortRecursive(pHead, tail);
+
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
-        removeColorText();
     }
     ShowAll();
-    cout << "\nTekan mana-mana kekunci untuk kembali...";
+    cout << "\nTekan Esc kekunci untuk kembali...";
 }
-

@@ -85,6 +85,15 @@ public:
 	//Add implementation
 
 	//Sort implementation
+	void getTail(Node* cur, Node*& tail);
+	void partition(
+		Node* head, 
+		Node* end, 
+		Node*& newHead, 
+		Node*& newEnd, 
+		Node*& pivotOut
+	);
+	void quickSortRecursive(Node*& headRef, Node* end);
 	void SortRoom();
 	//Sort implementation
 
