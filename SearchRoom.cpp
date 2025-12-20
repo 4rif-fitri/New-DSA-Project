@@ -54,7 +54,7 @@ void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
     printLabel("HASIL CARIAN");
 
     if (typeFind == "number") {
-        // SEQUENTIAL SEARCH
+        // SEQUENTIAL SEARCH:
 
         Node* curr = pHead;
         bool found = false;
@@ -72,7 +72,7 @@ void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
 
     }
     else if (typeFind == "price") {
-        // BINARY SEARCH
+        // BINARY SEARCH: Lebih laju untuk harga (Mesti Sorted)
 
         Node* start = pHead;
         Node* last = nullptr;
@@ -144,7 +144,7 @@ void Room::SearchRoom() {
             if (baris == 0) {
                 int numberRoom;
 
-                numberRoom = getInt("Masukkan Nombor Room : ",
+                numberRoom = getIntt("Masukkan Price Room : ",
                     "Input tidak sah. Sila masukkan nombor >= 0");
                 printTableFind("number", numberRoom, 0.0);
             
@@ -152,8 +152,8 @@ void Room::SearchRoom() {
             
                 double priceRoom;
                 
-                priceRoom = getDouble("Masukkan Price Room : ",
-                    "Input tidak sah. Sila masukkan nombor >= 0.");
+                priceRoom = getDoublee("Masukkan Price Room : ",
+                    "Input tidak sah. Sila masukkan nombor >= 0");
                 printTableFind("price", 0, priceRoom);
             
             }

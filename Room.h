@@ -3,6 +3,8 @@
 #include <windows.h>
 #include <conio.h>
 #include <functional>
+#include <string>
+#undef max
 
 using namespace std;
 class Room {
@@ -181,7 +183,7 @@ public:
 
 	}
 
-	double getDouble(string textInput, string textError) {
+	double getDoublee(string textInput, string textError) {
 		double input;
 		while (true) {
 			cout << textInput;;
@@ -196,7 +198,7 @@ public:
 		}
 	}
 
-	double getInt(string textInput, string textError) {
+	double getIntt(string textInput, string textError) {
 		double input;
 		while (true) {
 			cout << textInput;;
@@ -208,6 +210,19 @@ public:
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << textError << "\n";
+		}
+	}
+
+	string getStringg(string textInput, string textError) {
+		string name;
+		while (true) {
+			cout << textInput;
+			getline(cin >> ws, name);
+			if (!name.empty()) {
+				return name;
+			}else {
+				cout << textError << endl;
+			}
 		}
 	}
 
@@ -236,9 +251,7 @@ public:
 
 	//Add implementation
 	void optionType(int colum, string options[], int count_pilihan);
-	string getName();
 	string getType();
-	double getPrice();
 	bool sambung();
 	void displayDoneAdd();
 	void AddRoom();

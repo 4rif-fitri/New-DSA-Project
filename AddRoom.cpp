@@ -27,16 +27,6 @@ void Room::optionType(int colum, string options[],int count_pilihan) {
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 
-string Room::getName() {
-	string name;
-	while (true) {
-		cout << "Name Room : ";
-		getline(cin >> ws, name);
-		if (!name.empty()) {
-			return name;
-		}
-	}
-}
 
 string Room::getType() {
 	string options[] = { "Family", "Deluxe", "Standard", "VIP" };
@@ -75,24 +65,6 @@ string Room::getType() {
 	}
 	cout << endl;//!
 	return type;
-}
-
-double Room::getPrice() {
-	double price;
-
-	while (true) {
-		cout << "Price : ";
-		cin >> price;
-
-		if (!cin.fail() && price >= 0) {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			return price;
-		}
-
-		cout << "Masukkan nombor sahaja.\n";
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	}
 }
 
 bool Room::sambung() {
@@ -134,9 +106,10 @@ void Room::AddRoom() {
 		Node* pNew = new Node();
 
 		cout << "\nMasukkan Detail Room\n";
-		name = getName();
+		name = getStringg("Name Room :","Name Room Tidak boleh kosong");
 		type = getType();
-		price = getPrice();
+		price = getDoublee("Price : ",
+			"Masukkan nombor sahaja");
 
 		totalRoom = totalRoom++;
 
