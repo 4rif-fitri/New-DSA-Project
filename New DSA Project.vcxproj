@@ -133,6 +133,7 @@
     <ClCompile Include="SearchRoom.cpp" />
     <ClCompile Include="ShowRoom.cpp" />
     <ClCompile Include="SortRoom.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h" />

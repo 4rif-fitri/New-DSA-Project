@@ -33,6 +33,9 @@
     <ClCompile Include="SortRoom.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">

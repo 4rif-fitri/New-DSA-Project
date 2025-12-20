@@ -47,205 +47,39 @@ public:
 
 
 	// Utiliti cam guna banyak kali tampa batas
-	void printLabel(string text) {
-		cout << tl;
-		for (int i = 0; i < 30; i++) cout << hor;
-		cout << endl;
+	void printLabel(string text);
 
-		cout << ver << setw(16) << text << endl;
+	void printLabel(string text1, string text2);
 
-		cout << bl;
-		for (int i = 0; i < 30; i++) cout << hor;
-		cout << endl << endl;
-	}
-
-	void printLabel(string text1, string text2) {
-		cout << endl;
-		cout << tl;
-		for (int i = 0; i < 30; i++) cout << hor;
-		cout << endl;
-
-		cout << ver << text1 << endl;
-		cout << ver << text2 << endl;
-
-		cout << bl;
-		for (int i = 0; i < 30; i++) cout << hor;
-		cout << endl << endl;
-	}
-
-	void printHeaderTable() {
-		cout << tl;
-
-		for (int i = 0; i < 7; i++){
-			for (int i = 0; i < 14; i++) cout << hor;
-			cout << tee_top;
-		}
-
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tr << endl;
-
-		cout << ver
-			<< setw(14) << "Number Room" << ver
-			<< setw(14) << "Name" << ver
-			<< setw(14) << "Type" << ver
-			<< setw(14) << "Price" << ver
-			<< setw(14) << "Available" << ver
-			<< setw(14) << "Date ChackIn" << ver
-			<< setw(14) << "Date ChackIn" << ver
-			<< setw(14) << "Peyment" << ver
-		<< endl;
-
-		cout << th;
-
-		for (int i = 0; i < 7; i++) {
-			for (int i = 0; i < 14; i++) cout << hor;
-			cout << ddd;
-		}
-
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << th_right << endl;
-	}
+	void printHeaderTable();
 	
-	void printBodyTable(Node* temps) {
-		cout << ver
-			<< setw(14) << temps->roomNumber << ver
-			<< setw(14) << temps->name << ver
-			<< setw(14) << temps->type << ver
-			<< setw(14) << temps->price << ver
-			<< setw(14) << temps->isaVailable << ver
-			<< setw(14) << temps->dateChackIn << ver
-			<< setw(14) << temps->dateChackOut << ver
-			<< setw(14) << temps->payment << ver
-			<< endl;
-	}
+	void printBodyTable(Node* temps);
 
-	void printFooterTable() {
-		cout << bl;
-		for (int i = 0; i < 7; i++){
-			for (int i = 0; i < 14; i++) cout << hor;
-			cout << aaa;
-		}
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << sss << endl;
-	}
+	void printFooterTable();
 
-	void ShowAll() {
-		Node* temps = pHead;
-		int i = 1;
+	void ShowAll();
 
-		printHeaderTable();
+	double getDoublee(string textInput, string textError);
 
-		if (totalRoom == 0) {
-			cout << ver << setw(120) << ver << endl;
-			cout << ver << setw(14 * 4) << "No Data Yet" << setw(64) << ver << endl;
-			cout << ver << setw(120) << ver << endl;
-		}
-		else {
-			while (temps != nullptr) {
-				printBodyTable(temps);
-				temps = temps->link;
-				i++;
-			}
+	double getIntt(string textInput, string textError);
 
-		}
-		printFooterTable();
+	string getStringg(string textInput, string textError);
 
-	}
-
-	double getDoublee(string textInput, string textError) {
-		double input;
-		while (true) {
-			cout << textInput;;
-			cin >> input;
-			if (!cin.fail() && input >= 0) {
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				return input;
-			}
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << textError << "\n";
-		}
-	}
-
-	double getIntt(string textInput, string textError) {
-		double input;
-		while (true) {
-			cout << textInput;;
-			cin >> input;
-			if (!cin.fail() && input >= 0) {
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				return input;
-			}
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << textError << "\n";
-		}
-	}
-
-	string getStringg(string textInput, string textError) {
-		string name;
-		while (true) {
-			cout << textInput;
-			getline(cin >> ws, name);
-			if (!name.empty()) {
-				return name;
-			}else {
-				cout << textError << endl;
-			}
-		}
-	}
-
-	void setColorText() {
-		SetConsoleTextAttribute(hConsole, 10);
-	}
+	void setColorText();
 	
-	void removeColorText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
+	void removeColorText();
 
-	void setBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 0x1F);
-	}
+	void setBackgroundText();
 
-	void removeBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
+	void removeBackgroundText();
 
-	int getTextCode(string text) {
-		int code = -1;
+	int getTextCode(string text);
 
-		if (text == "merah") code = 1;
-		else if (text == "biru") code = 2;
-		else if (text == "cyan") code = 3;
-		else if (text == "kuning") code = 4;
-		else if (text == "hijau") code = 5;
-		else if (text == "hitam") code = 6;
-		else if (text == "putih") code = 7;
+	int getBackCode(string text);
 
-		return code;
-	}
+	void setColorText(string warna);
 
-	int getBackCode(string text) {
-		int code = -1;
-
-		if (text == "merah") code = BACKGROUND_RED;
-		else if (text == "biru") code = BACKGROUND_BLUE;
-		else if (text == "cyan") code = BACKGROUND_GREEN | BACKGROUND_BLUE;
-		else if (text == "kuning") code = BACKGROUND_RED | BACKGROUND_GREEN;
-		else if (text == "hijau") code = BACKGROUND_GREEN;
-		else if (text == "hitam") code = 0;
-		else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-
-		return code;
-	}
-
-	void setColorText(string warna) {
-		SetConsoleTextAttribute(hConsole, getTextCode(warna));
-	}
-
-	void setBackgroundText(string warna) {
-		SetConsoleTextAttribute(hConsole, getBackCode(warna));
-	}
+	void setBackgroundText(string warna);
 	// Utiliti
 
 	//Show implementation
