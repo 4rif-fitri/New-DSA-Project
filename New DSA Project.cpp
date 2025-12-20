@@ -84,5 +84,5 @@ void main() {
 	}
 
 	system("cls");
-	cout << "\n\n" << "Program Tamat :( " << "\n\n";
+	cout << "\n\n" << "Program Tamat " << "\n\n";
 }
