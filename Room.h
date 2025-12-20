@@ -108,17 +108,17 @@ public:
 
 	//Delete implementation
 	void padam(
-		bool& found,
-		Node*& pHead,
-		Node*& pPrev,
-		Node*& pCurr,
-		int& baris,
-		int& deletedRoomNumber,
-		int& indexToFind
+		bool found,
+		Node* &pHead,
+		Node* &pPrev,
+		Node* &pCurr,
+		int baris,
+		int deletedRoomNumber,
+		int indexToFind
 	);
 
 	void cari(
-		int& counter, 
+		int counter, 
 		int& indexToFind, 
 		bool& found, 
 		int& deletedRoomNumber, 

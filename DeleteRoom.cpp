@@ -32,37 +32,28 @@ void Room::printTableDelete(int baris) {
 }
 
 void Room::padam(
-	bool& found,
-	Node*& pHead,
-	Node*& pPrev,
-	Node*& pCurr,
-	int& baris,
-	int& deletedRoomNumber,
-	int& indexToFind){
+	bool found,
+	Node* &pHead,
+	Node* &pPrev,
+	Node* &pCurr,
+	int baris,
+	int deletedRoomNumber,
+	int indexToFind
+){
 
 	if (found) {
 		if (pPrev == nullptr) {
-			// KES 1: Memadamkan Head (Bilik pertama)
+			// padam Head (Bilik pertama)
 			pHead = pCurr->link;
 		}
 		else {
-			// KES 2: Memadamkan Node di tengah atau di hujung
+			// Node di tengah atau di hujung
 			pPrev->link = pCurr->link;
 		}
 
-		delete pCurr; // Membebaskan memori
-		totalRoom--; // 5. Mengemas kini totalRoom
+		delete pCurr; 
+		totalRoom--; 
 
-		// Kemas kini baris selepas pemadaman
-		if (totalRoom > 0) {
-			// Jika item terakhir dipadam, baris bergerak ke item sebelumnya
-			if (baris >= totalRoom) {
-				baris = totalRoom - 1;
-			}
-		}
-		else {
-			baris = 0; // Jika senarai kosong, baris reset ke 0
-		}
 		ShowAll();
 
 		setColorText();
@@ -72,7 +63,8 @@ void Room::padam(
 	}
 }
 
-void Room::cari(int& counter,int& indexToFind,bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr) {
+void Room::cari(int counter,int& indexToFind,bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr) {
+
 	while (pCurr != nullptr) {
 		if (counter == indexToFind) {
 			// Node di kedudukan yang betul ditemui
