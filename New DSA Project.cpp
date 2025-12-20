@@ -2,7 +2,7 @@
 #include "Room.h"
 using namespace std;
 
-void static printHome(string MenuList[], int Length, int Baris, Room room) {
+void printHome(string MenuList[], int Length, int Baris, Room room) {
 	system("cls");
 
 	room.printLabel("Resort Pasific Sumatra Booking");
