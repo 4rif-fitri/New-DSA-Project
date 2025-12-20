@@ -181,6 +181,36 @@ public:
 
 	}
 
+	double getDouble(string textInput, string textError) {
+		double input;
+		while (true) {
+			cout << textInput;;
+			cin >> input;
+			if (!cin.fail() && input >= 0) {
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				return input;
+			}
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << textError << "\n";
+		}
+	}
+
+	double getInt(string textInput, string textError) {
+		double input;
+		while (true) {
+			cout << textInput;;
+			cin >> input;
+			if (!cin.fail() && input >= 0) {
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				return input;
+			}
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << textError << "\n";
+		}
+	}
+
 	void setColorText() {
 		SetConsoleTextAttribute(hConsole, 10);
 	}
@@ -237,8 +267,6 @@ public:
 		int& indexToFind
 	);
 
-	int getRoomNumber();
-	double getRoomPrice();
 
 	void cari(
 		int& counter, 
