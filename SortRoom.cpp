@@ -80,12 +80,12 @@ void Room::SortRoom() {
     printLabel("Sort Room by Price using quickSort");
 
     if (pHead == nullptr || pHead->link == nullptr) {
-        cout << "Bilik tidak mencukupi untuk disusun." << endl;
+        cout << "Bilik tidak cukup untuk disusun" << endl;
     }
     else {
         quickSort();
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
     }
     ShowAll();
-    cout << "\nTekan Esc kekunci untuk kembali...";
+    cout << "\nTekan Esc untuk back";
 }
