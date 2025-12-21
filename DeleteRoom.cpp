@@ -40,6 +40,7 @@ void Room::padam(
 	int deletedRoomNumber,
 	int indexToFind
 ){
+	printLabel("Done Delete Room");
 
 	if (found) {
 		if (pPrev == nullptr) {
@@ -56,10 +57,7 @@ void Room::padam(
 
 		ShowAll();
 
-		setColorText();
-		cout << "\nBilik Nombor " << deletedRoomNumber << " berjaya dipadamkan!";
-		removeColorText();
-
+		printLabel("Pess ESC to back");
 	}
 }
 
@@ -78,61 +76,42 @@ void Room::cari(int counter,int& indexToFind,bool& found, int& deletedRoomNumber
 	}
 }
 
+void Room::padam(int& baris) {
+	system("cls");
+	// Paparkan bilik yang dipilih sebelum memadam
+
+	int indexToFind = baris; // Indeks 0, 1, 2, ...
+	int deletedRoomNumber = -1; // Untuk menyimpan ID bilik yang dipadam
+
+	// 2. Mencari Node pada kedudukan 'indexToFind'
+	Node* pCurr = pHead;
+	Node* pPrev = nullptr;
+	int counter = 0;
+	bool found = false;
+
+	cari(counter, indexToFind, found, deletedRoomNumber, pPrev, pCurr);
+	padam(found, pHead, pPrev, pCurr, baris, deletedRoomNumber, indexToFind);
+	cout << endl;
+}
+
 void Room::DeleteRoom() {
 	char choice = -1;
 	int baris = 0;
 
-	while (true) {
-
-		//kalau link list kosong
-		if (pHead == nullptr) {
-			printLabel("Delete Room");
-			setBackgroundText();
-			cout << "\nSenarai Kosong.";
-			removeBackgroundText();
-			printTableDelete(baris);
-			break;
-		}
-
-		// Pastikan baris tidak melebihi indeks terakhir jika totalRoom berubah
-		if (totalRoom > 0) baris = baris % totalRoom;
-
+	//kalau link list kosong
+	if (pHead == nullptr) {
+		printLabel("Delete Room");
 		printTableDelete(baris);
-		choice = _getch();
-
-		if (choice == 27) break; // ESC untuk keluar
-
-		if (choice == 0 || choice == -32) {
-			// Pergerakan anak panah
-			switch (_getch()) {
-			case 72: // UP
-				// Gelung ke item terakhir (totalRoom - 1) jika di item pertama (0)
-				baris = (baris == 0 ? totalRoom - 1 : baris - 1);
-				break;
-			case 80: // DOWN
-				// Gelung ke item pertama (0) jika di item terakhir
-				baris = (baris + 1) % totalRoom;
-				break;
-			}
-		}
-
-		if (choice == 13) { // ENTER ditekan
-			system("cls");
-			// Paparkan bilik yang dipilih sebelum memadam
-
-			int indexToFind = baris; // Indeks 0, 1, 2, ...
-			int deletedRoomNumber = -1; // Untuk menyimpan ID bilik yang dipadam
-
-			// 2. Mencari Node pada kedudukan 'indexToFind'
-			Node* pCurr = pHead;
-			Node* pPrev = nullptr;
-			int counter = 0;
-			bool found = false;
-
-			cari(counter, indexToFind, found, deletedRoomNumber, pPrev, pCurr);
-			padam(found, pHead, pPrev, pCurr, baris, deletedRoomNumber, indexToFind);
-			cout << endl;
-		}
+		return;
 	}
-	_getch();
+
+	while (true) {
+		printTableDelete(baris);
+		
+		string action = handleArrow(baris, totalRoom);
+
+		if (action == "esc") break; //esc
+
+		if (action == "enter") padam(baris);
+	}
 }

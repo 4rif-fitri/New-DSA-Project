@@ -14,7 +14,7 @@ void Room::printLabel(string text) {
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl;
+	cout << endl << endl;
 
 }
 

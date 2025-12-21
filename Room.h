@@ -74,6 +74,32 @@ public:
 
 	void optionType(int colum, string options[], int count_pilihan);
 	string getType(string optionss[], int count_pilihan);
+
+	string handleArrow(int& baris,int length) {
+		char key = _getch();
+
+		if (key == 27) return "esc";      // ESC
+		if (key == 13) return "enter";    // ENTER
+		if (key == 0 || key == -32) {
+			switch (_getch()) {
+			case 72: // UP
+				baris = (baris == 0) ? length - 1 : baris - 1;
+				break;
+			case 80: // DOWN
+				baris = (baris + 1) % length;
+				break;
+			}
+		}
+		return "";
+	}
+
+
+
+
+
+
+
+
 	// Utiliti ================
 
 	//Show implementation ================
@@ -126,7 +152,7 @@ public:
 		Node*& pPrev, 
 		Node*& pCurr
 	);
-
+	void padam(int& baris);
 	void DeleteRoom();
 	//Delete implementation ================
 

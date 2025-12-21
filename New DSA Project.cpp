@@ -53,22 +53,12 @@ void main() {
 
 	while (true) {
 		printHome(menuList, length, baris, room);
-		choice = _getch();
 
-		if (choice == 27) break; 
+		string action = room.handleArrow(baris, length);
 
-		if (choice == 0 || choice == -32) {
-			switch (_getch()) {
-			case 72:
-				baris = (baris == 0 ? length - 1 : baris - 1);
-				break;
-			case 80:
-				baris = (baris + 1) % length;
-				break;
-			}
-		}
+		if (action == "esc") break; //esc
 
-		if (choice == 13) {
+		if (action == "enter") { // enter
 			system("cls");
 			if (baris == 0)		 room.AddRoom();
 			else if (baris == 1) room.ShowRoom();

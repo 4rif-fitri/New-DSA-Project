@@ -91,29 +91,18 @@ void Room::SearchRoom() {
     int length = 2;
     int baris = 0;
     char arrow;
+    double priceRoom;
 
     while (true) {
         showMenuCari(listCari, baris, length);
-        arrow = _getch();
 
-        if (arrow == 27) break; // ESC untuk keluar
+        string action = handleArrow(baris, length);
 
-        if (arrow == 0 || arrow == -32) {
-            switch (_getch()) {
-            case 72: // Up
-                baris = (baris == 0) ? length - 1 : baris - 1;
-                break;
-            case 80: // Down
-                baris = (baris + 1) % length;
-                break;
-            }
-        }
+        if (action == "esc") break; //esc
 
-        if (arrow == 13) { // Enter
+        if (action == "enter") { // enter
             system("cls");
             printLabel("HASIL CARIAN");
-
-            double priceRoom;
                 
             priceRoom = getDoublee("Masukkan Price Room : ",
                 "Input tidak sah. Sila masukkan nombor >= 0");
