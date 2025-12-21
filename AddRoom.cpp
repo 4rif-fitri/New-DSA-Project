@@ -6,7 +6,7 @@ void Room::displayDoneAdd() {
 	ShowAll();
 }
 
-void Room::AddRoom() {
+void Room::AddRoomMain() {
 	while (true) {
 		system("cls");
 		printLabel("Add Room");

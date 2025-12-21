@@ -97,13 +97,13 @@ public:
 	// Utiliti ================
 
 	//Show implementation ================
-	void ShowRoom();
+	void ShowRoomMain();
 	void printTableDelete(int baris);
 	//Show implementation  ================
 
 	//Add implementation ================
 	void displayDoneAdd();
-	void AddRoom();
+	void AddRoomMain();
 	//Add implementation ================
 
 	//Sort implementation ================
@@ -117,14 +117,14 @@ public:
 	);
 	void quickSortRecursive(Node*& headRef, Node* end);
 	void quickSort();
-	void SortRoom();
+	void SortRoomMain();
 	//Sort implementation ================
 
 	//Search implementation ================
 	void sequentialSearch(double hargaCarian);
 	void binarySearch(double hargaCarian);
 	void showMenuCari(string listCari[], int baris, int length);
-	void SearchRoom();
+	void SearchRoomMain();
 	//Search implementation ================
 
 	//Delete implementation ================
@@ -144,7 +144,7 @@ public:
 		Node*& pCurr
 	);
 	void padam(int& baris);
-	void DeleteRoom();
+	void DeleteRoomMain();
 	//Delete implementation ================
 
 

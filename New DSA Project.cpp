@@ -38,14 +38,14 @@ void main() {
 		"Exit",
 	};
 
-	room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
-		"Booked", "2025/12/10", "2025/12/15", "Paid");
-	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
-		"Yes");
-	room.InsertDefaultNode("Family Hall A", 480.00, "Family",
-		"Booked", "2025/12/12", "2025/12/14", "Deposit");
-	room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
-		"Yes");
+	//room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
+	//	"Booked", "2025/12/10", "2025/12/15", "Paid");
+	//room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
+	//	"Yes");
+	//room.InsertDefaultNode("Family Hall A", 480.00, "Family",
+	//	"Booked", "2025/12/12", "2025/12/14", "Deposit");
+	//room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
+	//	"Yes");
 
 	int length = sizeof(menuList) / sizeof(*menuList);
 	int baris = 0;
@@ -60,11 +60,11 @@ void main() {
 
 		if (action == "enter") { // enter
 			system("cls");
-			if (baris == 0)		 room.AddRoom();
-			else if (baris == 1) room.ShowRoom();
-			else if (baris == 2) room.SortRoom();
-			else if (baris == 3) room.SearchRoom();
-			else if (baris == 4) room.DeleteRoom();
+			if (baris == 0)		 room.AddRoomMain();
+			else if (baris == 1) room.ShowRoomMain();
+			else if (baris == 2) room.SortRoomMain();
+			else if (baris == 3) room.SearchRoomMain();
+			else if (baris == 4) room.DeleteRoomMain();
 			else if (baris == 5) break;
 		}
 	}

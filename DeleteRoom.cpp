@@ -98,7 +98,7 @@ void Room::padam(int& baris) {
 	cout << endl;
 }
 
-void Room::DeleteRoom() {
+void Room::DeleteRoomMain() {
 	char choice = -1;
 	int baris = 0;
 

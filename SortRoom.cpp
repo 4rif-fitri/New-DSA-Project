@@ -75,7 +75,7 @@ void Room::quickSort() {
     quickSortRecursive(pHead, tail);
 }
 
-void Room::SortRoom() {
+void Room::SortRoomMain() {
     system("cls");
     printLabel("Sort Room by Price using quickSort");
 

@@ -1,20 +1,5 @@
 #include "Room.h"
 
-Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
-    if (start == nullptr) return nullptr;
-    Room::Node* slow = start;
-    Room::Node* fast = start->link;
-
-    while (fast != last) {
-        fast = fast->link;
-        if (fast != last) {
-            slow = slow->link;
-            fast = fast->link;
-        }
-    }
-    return slow;
-}
-
 void Room::showMenuCari(string listCari[], int baris, int length) {
     system("cls");
     printLabel("MENU CARIAN BILIK");
@@ -33,6 +18,21 @@ void Room::showMenuCari(string listCari[], int baris, int length) {
 
     printLabel( "Guna Arrow Up/Down untuk pilih",
                 "Esc untuk back");
+}
+
+Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
+    if (start == nullptr) return nullptr;
+    Room::Node* slow = start;
+    Room::Node* fast = start->link;
+
+    while (fast != last) {
+        fast = fast->link;
+        if (fast != last) {
+            slow = slow->link;
+            fast = fast->link;
+        }
+    }
+    return slow;
 }
 
 void Room::sequentialSearch(double hargaCarian) {
@@ -82,7 +82,7 @@ void Room::binarySearch(double hargaCarian) {
     if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
 }
 
-void Room::SearchRoom() {
+void Room::SearchRoomMain() {
     string listCari[] = {
         "Sequential Search",
         "Binary Search"
