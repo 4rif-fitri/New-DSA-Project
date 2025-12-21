@@ -87,6 +87,6 @@ void Room::SortRoom() {
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
     }
     ShowAll();
-    cout << "\nTekan Esc untuk back";
+    printLabel("Pess ESC to back");
     _getch();
 }

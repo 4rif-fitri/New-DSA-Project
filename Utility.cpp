@@ -14,7 +14,7 @@ void Room::printLabel(string text) {
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl << endl;
+	cout << endl;
 
 }
 
@@ -24,8 +24,16 @@ void Room::printLabel(string text1, string text2) {
 	for (int i = 0; i < 30; i++) cout << hor;
 	cout << endl;
 
-	cout << ver << text1 << endl;
-	cout << ver << text2 << endl;
+	cout << ver;
+	setBackgroundText("putih");
+	cout << text1 << endl;
+	setBackgroundText("hitam");
+	setColorText("putih");
+	cout << ver; 
+	setBackgroundText("putih");
+	cout << text2 << endl;
+	setBackgroundText("hitam");
+	setColorText("putih");
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;

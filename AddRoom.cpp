@@ -2,7 +2,6 @@
 
 void Room::displayDoneAdd() {
 	system("cls");
-	setColorText();
 	printLabel("Done Add Room...");
 	removeColorText();
 }
@@ -20,10 +19,11 @@ void Room::AddRoom() {
 		Node* pNew = new Node();
 
 		string options[] = { "Family", "Deluxe", "Standard", "VIP" };
+		int lenght = (sizeof(options) / sizeof(*options));
 
 		cout << "\nMasukkan Detail Room\n";
 		name = getStringg("Name Room :","Name Room Tidak boleh kosong");
-		type = getType(options, (sizeof(options) / sizeof(*options) ) );
+		type = getType(options, lenght);
 		price = getDoublee("Price : ","Masukkan nombor sahaja");
 
 		totalRoom = totalRoom++;
@@ -39,24 +39,25 @@ void Room::AddRoom() {
 		pNew->payment = "-";
 		pNew->link = nullptr;
 
-		if (pHead == nullptr) {
+		if (pHead == nullptr) { //if link list kosaong
 			pHead = pNew;
-		}
-		else {
+		
+		}else {
+		
 			Node* temp = pHead;
 			while (temp->link != nullptr) {
 				temp = temp->link;
 			}
 			temp->link = pNew;
+		
 		}
 
 		displayDoneAdd();
 		ShowAll();
 
-		if (!sambung()) {
-			break;
-		}
+		if (!sambung()) break;
 	}
-	cout << "Pess ESC to back";
+	printLabel("Pess ESC to back");
+
 }
 
