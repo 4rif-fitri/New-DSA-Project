@@ -10,7 +10,6 @@ void Room::jalan(int baris, Node*& targetNode) { // dapatkan node yg user pilih
 void Room::bookInputData(int baris) {
 	Node* targetNode;
 
-	int tahunIn,tahunOut, mountIn,dayIN, mountOut, dayOut;
 	string isTersedia, typePayment;
 	string optionsAvailable[] = {
 		"Free",
@@ -22,6 +21,7 @@ void Room::bookInputData(int baris) {
 	};
 	string tarikhIn, tarikhOut;
 
+	int tahunIn,tahunOut, mountIn,dayIN, mountOut, dayOut;
 	int countPilihanAvailable = sizeof(optionsAvailable) / sizeof(*optionsAvailable);
 	int countPilihanPayment = sizeof(optionsAvailable) / sizeof(*optionsAvailable);
 
@@ -39,20 +39,22 @@ void Room::bookInputData(int baris) {
 		typePayment = "-";
 	}
 	else if (isTersedia == "Booked") {
+		cout << endl;
 		tahunIn = getIntt("Masukkan Tahun Masuk :", "Masukkan Nombor sahaja");
 		mountIn = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
 		dayIN = getIntt("Masukkan Hari Masuk :","Masukkan Nombor sahaja");
-
+		
+		cout << endl;
 		tahunOut = getIntt("Masukkan Tahun keluar :", "Masukkan Nombor sahaja");
 		mountOut = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
 		dayOut = getIntt("Masukkan hari Masuk :", "Masukkan Nombor sahaja");
 	
+		cout << endl;
 		typePayment = getType(optionPayment, countPilihanPayment);
 
 		tarikhIn = to_string(tahunIn) + "/" + to_string(mountIn) + "/" + to_string(dayIN);
 		tarikhOut = to_string(tahunOut) + "/" + to_string(mountOut) + "/" + to_string(dayOut);
 	}
-
 
 	targetNode->dateChackIn = tarikhIn;
 	targetNode->dateChackOut = tarikhOut;

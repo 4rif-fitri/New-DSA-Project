@@ -314,3 +314,27 @@ void Room::ShowTableSelect(int baris) {
 	printFooterTable();
 	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
 }
+
+void Room::ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]){
+	system("cls");
+	printLabel(text);
+
+	if (text2 != "") {
+		cout << text2 << endl;
+	}
+
+	for (int i = 0; i < length; i++) {
+		if (i == baris) {
+			setBackgroundText();
+			cout << "> " << listCari[i] << endl;
+		}
+		else {
+			removeBackgroundText();
+			cout << "  " << listCari[i] << endl;
+		}
+	}
+	removeBackgroundText();
+
+	cout << endl;
+	printLabel(text3, text4);
+}

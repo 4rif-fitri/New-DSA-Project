@@ -1,25 +1,5 @@
 #include "Room.h"
 
-void Room::showMenuCari(string listCari[], int baris, int length) {
-    system("cls");
-    printLabel("MENU CARIAN BILIK");
-    cout << "Cari Berdasarkan Harga menggunakan..." << endl;
-    for (int i = 0; i < length; i++) {
-        if (i == baris) {
-            setBackgroundText();
-            cout << "> " << listCari[i] << endl;
-        }
-        else {
-            removeBackgroundText();
-            cout << "  " << listCari[i] << endl;
-        }
-    }
-    removeBackgroundText();
-
-    printLabel( "Guna Arrow Up/Down untuk pilih",
-                "Esc untuk back");
-}
-
 Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
     if (start == nullptr) return nullptr;
     Room::Node* slow = start;
@@ -94,7 +74,7 @@ void Room::SearchRoomMain() {
     double priceRoom;
 
     while (true) {
-        showMenuCari(listCari, baris, length);
+        ShowMenu("MENU CARIAN BILIK", "Cari Berdasarkan Harga menggunakan...", "Guna Arrow Up/Down untuk pilih", "Esc untuk back", baris, length, listCari);
 
         string action = handleArrow(baris, length);
 

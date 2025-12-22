@@ -2,30 +2,6 @@
 using namespace std;
 #include "Room.h"
 
-void printHome(string MenuList[], int Length, int Baris, Room room) {
-	system("cls");
-
-	room.printLabel("Resort Pasific Sumatra Booking");
-
-	for (int i = 0; i < Length; i++) {
-		bool selected = (i == Baris);
-
-		if (selected) {
-			room.setBackgroundText("cyan");
-			cout << "> " << MenuList[i] << endl;
-		}
-		else {
-			room.removeBackgroundText();
-			cout << "  " << MenuList[i] << endl;
-		}
-	}
-	room.removeBackgroundText();
-
-	cout << endl;
-	room.printLabel("Guna Arow Up Or Down To Select");
-
-}
-
 void main() {
 	Room room;
 
@@ -53,7 +29,7 @@ void main() {
 	char choice;
 
 	while (true) {
-		printHome(menuList, length, baris, room);
+		room.ShowMenu("Resort Pasific Sumatra Booking","","Guna Arrow Up/Down untuk pilih","Esc untuk back",baris,length,menuList);
 
 		string action = room.handleArrow(baris, length);
 

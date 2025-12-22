@@ -95,6 +95,8 @@ public:
 	}
 
 	void ShowTableSelect(int baris);
+
+	void ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]);
 	// Utiliti ================
 
 	//Show implementation ================
@@ -123,7 +125,6 @@ public:
 	//Search implementation ================
 	void sequentialSearch(double hargaCarian);
 	void binarySearch(double hargaCarian);
-	void showMenuCari(string listCari[], int baris, int length);
 	void SearchRoomMain();
 	//Search implementation ================
 
