@@ -2,7 +2,7 @@
 
 void Room::AddRoomMain() {
 	while (true) {
-		system("cls");
+		clear();
 		printLabel("Add Room");
 		ShowAll();
 
@@ -26,7 +26,7 @@ void Room::AddRoomMain() {
 		pNew->name = name;
 		pNew->price = price;
 		pNew->type = type;
-		pNew->isaVailable = "Yes";
+		pNew->isaVailable = "Free";
 		pNew->dateChackIn = " - ";
 		pNew->dateChackOut = " - ";
 		pNew->payment = " - ";
@@ -46,7 +46,7 @@ void Room::AddRoomMain() {
 		
 		}
 
-		system("cls");
+		clear();
 		printLabel("Add Room");
 		ShowAll();
 
