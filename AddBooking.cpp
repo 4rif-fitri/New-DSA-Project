@@ -31,7 +31,7 @@ void Room::bookInputData(int baris) {
 	ShowOne(targetNode);
 
 	cout << "Sila Masukkan Detail Booking > " << endl;
-	isTersedia = getType(optionsAvailable, countPilihanAvailable);
+	isTersedia = optionBaris<string>(optionsAvailable, countPilihanAvailable);
 
 	if (isTersedia == "Free") {
 		tarikhIn = "-";
@@ -50,7 +50,7 @@ void Room::bookInputData(int baris) {
 		dayOut = getIntt("Masukkan hari Masuk :", "Masukkan Nombor sahaja");
 	
 		cout << endl;
-		typePayment = getType(optionPayment, countPilihanPayment);
+		typePayment = optionBaris<string>(optionPayment, countPilihanPayment);
 
 		tarikhIn = to_string(tahunIn) + "/" + to_string(mountIn) + "/" + to_string(dayIN);
 		tarikhOut = to_string(tahunOut) + "/" + to_string(mountOut) + "/" + to_string(dayOut);

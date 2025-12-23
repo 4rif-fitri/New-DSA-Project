@@ -43,7 +43,7 @@ void main() {
 			else if (baris == 3) room.SearchRoomMain();
 			else if (baris == 4) room.AddbookingMain();
 			else if (baris == 5) room.DeleteRoomMain();
-			else if (baris == 6) break;
+			else if (baris == 6) room.test();
 		}
 	}
 

@@ -39,6 +39,9 @@
     <ClCompile Include="AddBooking.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">

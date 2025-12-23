@@ -237,7 +237,8 @@ bool Room::sambung() {
 
 }
 
-void Room::optionType(int colum, string options[], int count_pilihan) {
+template<typename T>
+void Room::optionType(int colum, T options[], int count_pilihan) {
 
 	for (int i = 0; i < count_pilihan; ++i) {
 		if (i > 0) {
@@ -255,7 +256,8 @@ void Room::optionType(int colum, string options[], int count_pilihan) {
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 
-string Room::getType(string options[], int count_pilihan) {
+template<typename T>
+T Room::getType(T options[], int count_pilihan) {
 
 	string type;
 	char keybord;
@@ -263,18 +265,19 @@ string Room::getType(string options[], int count_pilihan) {
 
 	while (true) {
 		cout << "Type of Room : ";
-		optionType(colum, options, count_pilihan);
+		optionType<T>(colum, options, count_pilihan);
 
 		keybord = _getch(); //when click keyboard
 
 		if (keybord == 0 || keybord == -32) {
 			switch (_getch()) { //click keyboard
 
-			case 75: // LEFT 
-				colum = (colum == 0) ? count_pilihan : colum - 1;
+			case 75: // LEFT
+				colum = (colum == 0) ? count_pilihan - 1 : colum - 1;
 				break;
+
 			case 77: // RIGHT
-				colum = (colum == count_pilihan) ? 0 : colum + 1;
+				colum = (colum == count_pilihan - 1) ? 0 : colum + 1;
 				break;
 			}
 
@@ -338,3 +341,5 @@ void Room::ShowMenu(string text, string text2, string text3, string text4, int b
 	cout << endl;
 	printLabel(text3, text4);
 }
+
+

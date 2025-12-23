@@ -73,8 +73,11 @@ public:
 
 	bool sambung();
 
-	void optionType(int colum, string options[], int count_pilihan);
-	string getType(string optionss[], int count_pilihan);
+	template<typename T>
+	void optionType(int colum,T options[], int count_pilihan);
+	
+	template<typename T>
+	T getType(T optionss[], int count_pilihan);
 
 	string handleArrow(int& baris,int length) {
 		char key = _getch();
@@ -127,6 +130,12 @@ public:
 	void binarySearch(double hargaCarian);
 	void SearchRoomMain();
 	//Search implementation ================
+
+	template<typename T>
+	void showOptionBaris(int colum, T options[], int count_pilihan);
+	template<typename T>
+	T optionBaris(T optionss[], int count_pilihan);
+	void test();
 
 	//Delete implementation ================
 	void padamLink(
