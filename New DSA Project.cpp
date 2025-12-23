@@ -47,10 +47,6 @@ void main() {
 		}
 	}
 
-	system("cls");
-	room.setBackgroundText("kuning");
-	cout << "\n\n" << "Program Tamat " << "\n\n";
-	room.setBackgroundText("hitam");
-	room.setColorText("putih");
-
+	room.clear();
+	room.printLabel("Program Tamat");
 }
