@@ -16,14 +16,10 @@ void main() {
 		"Exit",
 	};
 
-	room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
-		"Booked", "2025/12/10", "2025/12/15", "Paid");
-	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
-		"Yes");
-	room.InsertDefaultNode("Family Hall A", 480.00, "Family",
-		"Booked", "2025/12/12", "2025/12/14", "Deposit");
-	room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
-		"Yes");
+	room.InsertDefaultNode("Ocean Front", 500.00, "VIP","Booked", "2025/12/10", "2025/12/15", "Paid");
+	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe","Yes");
+	room.InsertDefaultNode("Family Hall A", 480.00, "Family","Booked", "2025/12/12", "2025/12/14", "Deposit");
+	room.InsertDefaultNode("Garden Suite", 220.50, "Standard","Yes");
 
 	int length = sizeof(menuList) / sizeof(*menuList);
 	int baris = 0;
