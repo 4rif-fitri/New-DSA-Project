@@ -1,10 +1,11 @@
 ﻿#include <iostream>
 using namespace std;
 #include "Room.h"
-// Arif
+
 void main() {
+
 	Room room;
-	//lorem
+
 	string menuList[] = {
 		"Add Room",
 		"Show Table Room",
@@ -26,7 +27,6 @@ void main() {
 
 	int length = sizeof(menuList) / sizeof(*menuList);
 	int baris = 0;
-	char choice;
 
 	while (true) {
 		room.ShowMenu("Resort Pasific Sumatra Booking","","Guna Arrow Up/Down untuk pilih","Esc untuk back",baris,length,menuList);
@@ -36,7 +36,7 @@ void main() {
 		if (action == "esc") break; //esc
 
 		if (action == "enter") { // enter
-			system("cls");
+			room.clear();
 			if (baris == 0)		 room.AddRoomMain();
 			else if (baris == 1) room.ShowRoomMain();
 			else if (baris == 2) room.SortRoomMain();
