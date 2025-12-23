@@ -26,12 +26,12 @@ void Room::bookInputData(int baris) {
 	int countPilihanPayment = sizeof(optionsAvailable) / sizeof(*optionsAvailable);
 
 	jalan(baris, targetNode);
-	system("cls");
+	clear();
 	printLabel("Add Booking Room");
 	ShowOne(targetNode);
 
-	cout << "Sila Masukkan Detail Booking > " << endl;
-	isTersedia = optionBaris<string>(optionsAvailable, countPilihanAvailable);
+	cout << "Sila Masukkan Detail Booking : \n";
+	isTersedia = optionBaris<string>(optionsAvailable, countPilihanAvailable,"Status : ");
 
 	if (isTersedia == "Free") {
 		tarikhIn = "-";
@@ -39,21 +39,16 @@ void Room::bookInputData(int baris) {
 		typePayment = "-";
 	}
 	else if (isTersedia == "Booked") {
-		cout << endl;
-		tahunIn = getIntt("Masukkan Tahun Masuk :", "Masukkan Nombor sahaja");
-		mountIn = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
-		dayIN = getIntt("Masukkan Hari Masuk :","Masukkan Nombor sahaja");
-		
-		cout << endl;
-		tahunOut = getIntt("Masukkan Tahun keluar :", "Masukkan Nombor sahaja");
-		mountOut = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
-		dayOut = getIntt("Masukkan hari Masuk :", "Masukkan Nombor sahaja");
-	
-		cout << endl;
-		typePayment = optionBaris<string>(optionPayment, countPilihanPayment);
+		nextLine();
+		getDate(tahunIn, mountIn, dayIN, "masuk");
+		nextLine();
+		getDate(tahunOut, mountOut, dayOut, "keluuar");
+		nextLine();
 
-		tarikhIn = to_string(tahunIn) + "/" + to_string(mountIn) + "/" + to_string(dayIN);
-		tarikhOut = to_string(tahunOut) + "/" + to_string(mountOut) + "/" + to_string(dayOut);
+		typePayment = optionBaris<string>(optionPayment, countPilihanPayment,"Payment : ");
+
+		tarikhIn = convertDateToString(tahunIn, mountIn, dayIN);
+		tarikhOut = convertDateToString(tahunOut, mountOut, dayOut);
 	}
 
 	targetNode->dateChackIn = tarikhIn;
@@ -69,7 +64,7 @@ void Room::AddbookingMain() {
 	int baris = 0;
 
 	while (true) {
-		system("cls");
+		clear();
 		printLabel("Add Booking Room");
 		ShowTableSelect(baris);
 

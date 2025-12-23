@@ -73,12 +73,6 @@ public:
 
 	bool sambung();
 
-	template<typename T>
-	void optionType(int colum,T options[], int count_pilihan);
-	
-	template<typename T>
-	T getType(T optionss[], int count_pilihan);
-
 	string handleArrow(int& baris,int length) {
 		char key = _getch();
 
@@ -132,9 +126,55 @@ public:
 	//Search implementation ================
 
 	template<typename T>
-	void showOptionBaris(int colum, T options[], int count_pilihan);
+	void showOptionBaris(int colum, T options[], int count_pilihan) {
+		for (int i = 0; i < count_pilihan; ++i) {
+			if (i > 0) {
+				removeBackgroundText();
+				cout << " | ";
+			}
+
+			if (i == colum) setBackgroundText();
+			else removeBackgroundText();
+
+			cout << options[i];
+		}
+
+		removeBackgroundText();
+		cout << "\r"; // Kembalikan kursor ke awal baris
+	}
+	
 	template<typename T>
-	T optionBaris(T optionss[], int count_pilihan);
+	T optionBaris(T optionss[], int count_pilihan, string text) {
+		string type;
+		char keybord;
+		int colum = 0;
+
+		while (true) {
+			cout << text;
+			showOptionBaris<T>(colum, optionss, count_pilihan);
+
+			keybord = _getch(); //when click keyboard
+
+			if (keybord == 0 || keybord == -32) {
+				switch (_getch()) { //click keyboard
+
+				case 75: // LEFT
+					colum = (colum == 0) ? count_pilihan - 1 : colum - 1;
+					break;
+
+				case 77: // RIGHT
+					colum = (colum == count_pilihan - 1) ? 0 : colum + 1;
+					break;
+				}
+
+			}
+
+			if (keybord == 13) break; //click enter
+		}
+		cout << endl;//!
+		return optionss[colum];
+	}
+	
 	void test();
 
 	//Delete implementation ================
@@ -198,5 +238,32 @@ public:
 	}
 	//remove
 
+	void getDate(int& tahun, int& mount, int& day, string type);
+	
+	string convertDateToString(int year, int mount, int day) {
+		return to_string(year) + "/" + to_string(mount) + "/" + to_string(day);
+		
+	};
 
+	void getDateDay(int& input) {
+		while (true) {
+			cout << "Masukkan hari : ";
+			cin >> input;
+			if (!cin.fail() && input > 0 && input <= 31) {
+				return;
+			}
+			cout << "\tHey Input Invalid! \n";
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+	}
+
+	void nextLine() {
+		cout << endl;
+
+	}
+
+	void clear() {
+		system("cls");
+	}
 };
