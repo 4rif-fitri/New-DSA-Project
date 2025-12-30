@@ -50,7 +50,7 @@ void Room::AddRoomMain() {
 		printLabel("Add Room");
 		ShowAll();
 
-		if (!sambung()) break;
+		if (!isContinue()) break;
 	}
 	printLabel("Pess ESC to back");
 

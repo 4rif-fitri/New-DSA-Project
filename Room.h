@@ -75,7 +75,7 @@ public:
 	//Delete implementation ================
 	
 	//Add Booking implementation ================
-	void jalan(int baris, Node*& targetNode);
+	void findTargetNode(int baris, Node*& targetNode);
 	void bookInputData(int baris);
 	void AddbookingMain();
 	//Add Booking implementation ================
@@ -142,7 +142,7 @@ public:
 	void setColorText(string warna);
 	void setBackgroundText(string warna);
 	
-	bool sambung();
+	bool isContinue();
 	string handleArrow(int& baris, int length);
 	string convertDateToString(int year, int mount, int day);
 	void nextLine();

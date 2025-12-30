@@ -4,7 +4,7 @@ void Room::printLabel(string text) {
 
 	cout << tl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl;
+	nextLine();
 
 	cout << ver;
 	setBackgroundText("putih");
@@ -14,15 +14,15 @@ void Room::printLabel(string text) {
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl << endl;
-
+	nextLine();
+	nextLine();
 }
 
 void Room::printLabel(string text1, string text2) {
-	cout << endl;
+	nextLine();
 	cout << tl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl;
+	nextLine();
 
 	cout << ver;
 	setBackgroundText("putih");
@@ -37,7 +37,8 @@ void Room::printLabel(string text1, string text2) {
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
-	cout << endl << endl;
+	nextLine();
+	nextLine();
 }
 
 void Room::printHeaderTable() {
@@ -61,7 +62,6 @@ void Room::printHeaderTable() {
 		<< setw(14) << "Date ChackOut" << ver
 		<< setw(14) << "Peyment" << ver
 		<< endl;
-
 	cout << th;
 
 	for (int i = 0; i < 7; i++) {
@@ -154,16 +154,13 @@ double Room::getIntt(string textInput, string textError) {
 
 string Room::getStringg(string textInput, string textError) {
 	string name;
-	while (true) {
+	do {
 		cout << textInput;
 		getline(cin >> ws, name);
-		if (!name.empty()) {
-			return name;
-		}
-		else {
-			cout << textError << endl;
-		}
-	}
+		if (name.empty()) cout << textError << endl;
+	} while (name.empty());
+
+	return name;
 }
 
 void Room::setColorText() {
@@ -185,12 +182,9 @@ void Room::removeBackgroundText() {
 int Room::getTextCode(string text) {
 	int code = -1;
 
-	if (text == "merah")        code = FOREGROUND_RED;
-	else if (text == "biru")   code = FOREGROUND_BLUE;
-	else if (text == "cyan")   code = FOREGROUND_GREEN | FOREGROUND_BLUE;
-	else if (text == "kuning") code = FOREGROUND_RED | FOREGROUND_GREEN;
-	else if (text == "hitam")  code = 0;
+	if (text == "hitam")  code = 0;
 	else if (text == "putih")  code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+	else if(text == "biru") code = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
 
 	return code;
 }
@@ -198,14 +192,10 @@ int Room::getTextCode(string text) {
 int Room::getBackCode(string text) {
 	int code = -1;
 
-	if (text == "merah") code = BACKGROUND_RED;
-	else if (text == "biru") code = BACKGROUND_BLUE;
-	else if (text == "cyan") code = BACKGROUND_GREEN | BACKGROUND_BLUE;
-	else if (text == "kuning") code = BACKGROUND_RED | BACKGROUND_GREEN;
-	else if (text == "hitam") code = 0;
+	if (text == "hitam") code = 0;
 	else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-	else if (text == "hijau")
-		code = BACKGROUND_GREEN;
+	else if (text == "biru") code = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+
 	return code;
 }
 
@@ -217,7 +207,7 @@ void Room::setBackgroundText(string warna) {
 	SetConsoleTextAttribute(hConsole, getBackCode(warna));
 }
 
-bool Room::sambung() {
+bool Room::isContinue() {
 	char c;
 	cout << "Nak Teruskan Add Room? (y/n) : ";
 	cin >> ws >> c;
@@ -227,13 +217,7 @@ bool Room::sambung() {
 	cin.ignore();
 	//clear buffer
 
-	if (c == 'y') {
-		return true;
-	}
-	else {
-		return false;
-	}
-
+	return (tolower(c) == 'y');
 }
 
 void Room::ShowTableSelect(int baris) {
@@ -266,7 +250,7 @@ void Room::ShowTableSelect(int baris) {
 }
 
 void Room::ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]){
-	system("cls");
+	clear();
 	printLabel(text);
 
 	if (text2 != "") {
@@ -285,7 +269,7 @@ void Room::ShowMenu(string text, string text2, string text3, string text4, int b
 	}
 	removeBackgroundText();
 
-	cout << endl;
+	nextLine();
 	printLabel(text3, text4);
 }
 
@@ -316,14 +300,9 @@ string Room::handleArrow(int& baris, int length) {
 	return "";
 }
 
-void Room::clear() {
-	system("cls");
+void Room::clear() { system("cls"); }
 
-}
-
-void Room::nextLine() {
-	cout << endl;
-}
+void Room::nextLine() { cout << endl; }
 
 void Room::getDateDay(int& input) {
 	while (true) {
@@ -339,5 +318,5 @@ void Room::getDateDay(int& input) {
 }
 
 string Room::convertDateToString(int year, int mount, int day) {
-	return to_string(year) + "/" + to_string(mount) + "/" + to_string(day);
+	return to_string(day) + "/" + to_string(mount) + "/" + to_string(year);
 }
