@@ -130,18 +130,11 @@ public:
 	double getDoublee(string textInput, string textError);
 	double getIntt(string textInput, string textError);
 	string getStringg(string textInput, string textError);
-	int getTextCode(string text);
-	int getBackCode(string text);
 	void getDate(int& tahun, int& mount, int& day, string type);
 	void getDateDay(int& input);
 	
-	void setColorText();
-	void removeColorText();
-	void setBackgroundText();
-	void removeBackgroundText();
-	void setColorText(string warna);
-	void setBackgroundText(string warna);
-	
+	void setColor(string text);
+
 	bool isContinue();
 	string handleArrow(int& baris, int length);
 	string convertDateToString(int year, int mount, int day);
@@ -160,19 +153,19 @@ public:
 
 template<typename T>
 void Room::showOptionBaris(int colum, T options[], int count_pilihan) {
-	for (int i = 0; i < count_pilihan; ++i) {
+	for (int i = 0; i < count_pilihan; i++) {
 		if (i > 0) {
-			removeBackgroundText();
+			setColor("none");
 			cout << " | ";
 		}
 
-		if (i == colum) setBackgroundText();
-		else removeBackgroundText();
+		if (i == colum) setColor("biru");
+		else setColor("none");
 
 		cout << options[i];
 	}
 
-	removeBackgroundText();
+	setColor("none");
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 

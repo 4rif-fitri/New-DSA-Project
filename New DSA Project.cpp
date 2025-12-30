@@ -33,7 +33,7 @@ void main() {
 
 		if (action == "enter") { // enter
 			room.clear();
-			if (baris == 0)		 room.AddRoomMain();
+			if		(baris == 0) room.AddRoomMain();
 			else if (baris == 1) room.ShowRoomMain();
 			else if (baris == 2) room.SortRoomMain();
 			else if (baris == 3) room.SearchRoomMain();

@@ -7,10 +7,9 @@ void Room::printLabel(string text) {
 	nextLine();
 
 	cout << ver;
-	setBackgroundText("putih");
+	setColor("putih");
 	cout << setw(16) << text << endl;
-	setBackgroundText("hitam");
-	setColorText("putih");
+	setColor("none");
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
@@ -25,15 +24,15 @@ void Room::printLabel(string text1, string text2) {
 	nextLine();
 
 	cout << ver;
-	setBackgroundText("putih");
+	setColor("putih");
 	cout << text1 << endl;
-	setBackgroundText("hitam");
-	setColorText("putih");
+	setColor("none");
+
 	cout << ver; 
-	setBackgroundText("putih");
+	setColor("putih");
 	cout << text2 << endl;
-	setBackgroundText("hitam");
-	setColorText("putih");
+	setColor("none");
+
 
 	cout << bl;
 	for (int i = 0; i < 30; i++) cout << hor;
@@ -163,61 +162,21 @@ string Room::getStringg(string textInput, string textError) {
 	return name;
 }
 
-void Room::setColorText() {
-	SetConsoleTextAttribute(hConsole, 10);
-}
+void Room::setColor(string text) {
+	int code;
 
-void Room::removeColorText() {
-	SetConsoleTextAttribute(hConsole, 7);
-}
+	if (text == "putih") code = code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+	else if (text == "biru")  code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_BLUE;
+	else                       code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;   
 
-void Room::setBackgroundText() {
-	SetConsoleTextAttribute(hConsole, 0x1F);
-}
-
-void Room::removeBackgroundText() {
-	SetConsoleTextAttribute(hConsole, 7);
-}
-
-int Room::getTextCode(string text) {
-	int code = -1;
-
-	if (text == "hitam")  code = 0;
-	else if (text == "putih")  code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-	else if(text == "biru") code = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-
-	return code;
-}
-
-int Room::getBackCode(string text) {
-	int code = -1;
-
-	if (text == "hitam") code = 0;
-	else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-	else if (text == "biru") code = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-
-	return code;
-}
-
-void Room::setColorText(string warna) {
-	SetConsoleTextAttribute(hConsole, getTextCode(warna));
-}
-
-void Room::setBackgroundText(string warna) {
-	SetConsoleTextAttribute(hConsole, getBackCode(warna));
+	SetConsoleTextAttribute(hConsole, code);
 }
 
 bool Room::isContinue() {
-	char c;
-	cout << "Nak Teruskan Add Room? (y/n) : ";
-	cin >> ws >> c;
+	string option[] = {"yes","no"};
+	string c = optionBaris<string>(option, 2, "Nak add lagi? : ");
 
-	//clear buffer
-	cin.clear();
-	cin.ignore();
-	//clear buffer
-
-	return (tolower(c) == 'y');
+	return (c == "yes");
 }
 
 void Room::ShowTableSelect(int baris) {
@@ -232,18 +191,18 @@ void Room::ShowTableSelect(int baris) {
 		bool selected = (i == baris + 1);
 
 		if (selected) {
-			setBackgroundText();
+			setColor("biru");
 			printBodyTable(temps);
 		}
 		else {
-			removeBackgroundText();
+			setColor("none");
 			printBodyTable(temps);
 		}
 
 		temps = temps->link;
 		i++;
 	}
-	removeBackgroundText();
+	setColor("none");
 
 	printFooterTable();
 	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
@@ -259,15 +218,15 @@ void Room::ShowMenu(string text, string text2, string text3, string text4, int b
 
 	for (int i = 0; i < length; i++) {
 		if (i == baris) {
-			setBackgroundText();
+			setColor("biru");
 			cout << "> " << listCari[i] << endl;
 		}
 		else {
-			removeBackgroundText();
+			setColor("none");
 			cout << "  " << listCari[i] << endl;
 		}
 	}
-	removeBackgroundText();
+	setColor("none");
 
 	nextLine();
 	printLabel(text3, text4);
