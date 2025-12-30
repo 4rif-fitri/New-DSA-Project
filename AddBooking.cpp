@@ -55,8 +55,6 @@ void Room::bookInputData(int baris) {
 	targetNode->dateChackOut = tarikhOut;
 	targetNode->payment = typePayment;
 	targetNode->isaVailable= isTersedia;
-
-	return;
 }
 
 void Room::AddbookingMain() {

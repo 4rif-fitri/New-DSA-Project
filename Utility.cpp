@@ -205,16 +205,14 @@ void Room::ShowTableSelect(int baris) {
 	setColor("none");
 
 	printFooterTable();
-	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
+	printLabel("Select guna arrow Up/Down and Enter untuk Update", "Pess ESC to back");
 }
 
 void Room::ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]){
 	clear();
 	printLabel(text);
 
-	if (text2 != "") {
-		cout << text2 << endl;
-	}
+	if (text2 != "") cout << text2 << endl;
 
 	for (int i = 0; i < length; i++) {
 		if (i == baris) {
@@ -244,9 +242,9 @@ void Room::getDate(int& tahun, int& mount, int& day, string type) {
 string Room::handleArrow(int& baris, int length) {
 	char key = _getch();
 
-	if (key == 27) return "esc";      // ESC
-	if (key == 13) return "enter";    // ENTER
-	if (key == 0 || key == -32) {
+	if (key == 27) return "esc";		// ESC
+	if (key == 13) return "enter";		// ENTER
+	if (key == 0 || key == -32) {		// Arrow 
 		switch (_getch()) {
 		case 72: // UP
 			baris = (baris == 0) ? length - 1 : baris - 1;
@@ -267,11 +265,10 @@ void Room::getDateDay(int& input) {
 	while (true) {
 		cout << "Masukkan hari : ";
 		cin >> input;
-		if (!cin.fail() && input > 0 && input <= 31) {
-			return;
-		}
+		if (input > 0 && input <= 31) return;
+
 		cout << "\tHey Input Invalid! \n";
-		cin.clear();
+		cin.clear(); 
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	}
 }

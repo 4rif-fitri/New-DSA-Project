@@ -45,40 +45,40 @@ public:
 	Room() {};
 	~Room() {};
 
-	//Show implementation ================
+	//Show implementation			================
 	void ShowRoomMain();
-	//Show implementation  ================
+	//Show implementation			================
 
-	//Add implementation ================
+	//Add implementation			================
 	void AddRoomMain();
-	//Add implementation ================
+	//Add implementation			================
 
-	//Sort implementation ================
+	//Sort implementation			================
 	void getTail(Node* cur, Node*& tail);
 	void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut);
 	void quickSortRecursive(Node*& headRef, Node* end);
 	void quickSort();
 	void SortRoomMain();
-	//Sort implementation ================
+	//Sort implementation			================
 
-	//Search implementation ================
+	//Search implementation			================
 	void sequentialSearch(double hargaCarian);
 	void binarySearch(double hargaCarian);
 	void SearchRoomMain();
-	//Search implementation ================	
+	//Search implementation			================	
 
-	//Delete implementation ================
+	//Delete implementation			================
 	void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);
 	void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);
 	void padam(int& baris);
 	void DeleteRoomMain();
-	//Delete implementation ================
+	//Delete implementation			================
 	
-	//Add Booking implementation ================
+	//Add Booking implementation	================
 	void findTargetNode(int baris, Node*& targetNode);
 	void bookInputData(int baris);
 	void AddbookingMain();
-	//Add Booking implementation ================
+	//Add Booking implementation	================
 
 
 	//remove
@@ -115,7 +115,7 @@ public:
 	}
 	//remove
 
-	// Utiliti cam guna banyak kali tampa batas ================
+	// Utiliti boleh guna banyak kali	================
 	void printLabel(string text);
 	void printLabel(string text1, string text2);
 	void printHeaderTable();
@@ -148,7 +148,7 @@ public:
 
 	template<typename T>
 	T optionBaris(T optionss[], int count_pilihan, string text);
-	// Utiliti ================
+	// Utiliti							================
 };
 
 template<typename T>
