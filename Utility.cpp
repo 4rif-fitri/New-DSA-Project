@@ -1,4 +1,4 @@
-/*
+﻿/*
 	description:
 	it utility func can use many time
 	all func is more to ui 
@@ -80,6 +80,11 @@ void Room::printHeaderTable() {
 
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << th_right << endl;
+
+	//the output like this
+	//┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐
+	//│   Number Room│          Name│          Type│     Price(RM)│     Available│  Date ChackIn│ Date ChackOut│       Peyment│
+	//├──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
 }
 
 void Room::printBodyTable(Node* temps) {
@@ -93,6 +98,8 @@ void Room::printBodyTable(Node* temps) {
 		<< setw(14) << temps->dateChackOut << ver
 		<< setw(14) << temps->payment << ver
 		<< endl;
+	//the output like this
+	//│             1│         lorem│           VIP│           123│        BankIn│
 }
 
 void Room::printFooterTable() {
@@ -103,30 +110,33 @@ void Room::printFooterTable() {
 	}
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << sss << endl;
+
+	//the output like this
+	// └──────────────┴──────────────┴─────────────┘
 }
 
 void Room::ShowAll() {
-	printHeaderTable();
+	printHeaderTable(); //print header table
 
 	Node* temps = pHead;
 
-	if (totalRoom == 0) {
+	if (totalRoom == 0) { // if tiada data
 		cout << ver << setw(120) << ver << endl;
 		cout << ver << setw(14 * 4) << "No Data Yet" << setw(64) << ver << endl;
 		cout << ver << setw(120) << ver << endl;
 	}
-	else {
+	else { //kalau ada loop all data
 		while (temps != nullptr) {
-			printBodyTable(temps);
-			temps = temps->link;
+			printBodyTable(temps); //prit data dalam body table
+			temps = temps->link;	//next list
 		}
 
 	}
-	printFooterTable();
+	printFooterTable();//print footer table
 
 }
-
-void Room::ShowOne(Node* one) {
+//show one data dalam table
+void Room::ShowOne(Node* one) { 
 	printHeaderTable();
 	printBodyTable(one);
 	printFooterTable();
@@ -138,10 +148,11 @@ double Room::getDoublee(string textInput, string textError) {
 	while (true) {
 		cout << textInput;
 		cin >> input;
-		
+		// cin.fail pastikan input user betul betul same dgn jenis variable
 		if (!cin.fail() && input >= 0) return input;
 		
-		cin.clear();
+		cin.clear(); //reset cin
+		//buang input dalam buffer
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << textError << "\n";
 	}
@@ -166,7 +177,10 @@ string Room::getStringg(string textInput, string textError) {
 	string name;
 	do {
 		cout << textInput;
+		// (getline read satu line) (cin >> ws  buang white sapce yg tertinngal dalam buffer)
 		getline(cin >> ws, name);
+
+		//if kosong
 		if (name.empty()) cout << textError << endl;
 	} while (name.empty());
 
@@ -185,6 +199,8 @@ void Room::setColor(string text) { // tuka warna terminal
 
 bool Room::isContinue() {
 	string option[] = {"yes","no"};
+
+	//dapatkan input guna arrow left/right
 	string c = optionBaris<string>(option, 2, "Nak add lagi? : ");
 
 	return (c == "yes");
@@ -264,8 +280,8 @@ string Room::handleArrow(int& baris, int length) {
 
 	if (key == 27) return "esc";		// ESC
 	if (key == 13) return "enter";		// ENTER
-	if (key == 0 || key == -32) {		// Arrow 
-		switch (_getch()) {
+	if (key == 0 || key == -32) {		// Arrow key takde code so akan return 0 or -32 
+		switch (_getch()) { // baca lagi _getch untuk tentukan jenis arrow
 		case 72: // UP
 			baris = (baris == 0) ? length - 1 : baris - 1;
 			break;
