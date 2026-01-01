@@ -1,4 +1,13 @@
-﻿#include <iostream>
+﻿/*
+	description: our class and objects
+
+	@author Arif Fitri, RAED HAZEEQ, FAHRUL AZWAN and DATU AMIRUL
+
+ */
+#ifndef ROOM_H
+#define ROOM_H
+
+#include <iostream>
 #include <iomanip>
 #include <windows.h>
 #include <conio.h>
@@ -27,8 +36,10 @@ public:
 	int totalRoom = 0;
 	Node* pHead = nullptr;
 	Node* pCurr;
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //untuk bagi warna di terminal
+
+	// for make table ui
 	char tl = 218;			// ┌  
 	char tr = 191;			// ┐  
 	char bl = 192;			// └	  
@@ -42,114 +53,122 @@ public:
 	char sss = 217;			// ┘
 	char ddd = 197;			// ┼
 
-	Room() {};
+	//init data
+	Room() {
+		for (int i = 0; i < 5; i++) {
+			Node* pNew = new Node();
+
+			totalRoom++;
+
+			pNew->roomNumber = totalRoom;
+			pNew->name = "lorem";
+			pNew->price = 123;
+			pNew->type = "VIP";
+
+			pNew->isaVailable = "Free";
+			pNew->dateChackIn = "1/1/2025";
+			pNew->dateChackOut = "2/1/2025";
+			pNew->payment = "BankIn";
+
+			pNew->link = nullptr;
+
+			// Logik Linked List
+			if (pHead == nullptr) {
+				pHead = pNew;
+			}
+			else {
+				Node* temp = pHead;
+				while (temp->link != nullptr) {
+					temp = temp->link;
+				}
+				temp->link = pNew;
+			}
+		}
+	}
 	~Room() {};
 
-	//Show implementation			================
+	//Show implementation			================ Arif
 	void ShowRoomMain();
-	//Show implementation			================
+	//================
 
-	//Add implementation			================
+	//Add implementation			================ Arif 
 	void AddRoomMain();
-	//Add implementation			================
+	//================
 
-	//Sort implementation			================
-	void getTail(Node* cur, Node*& tail); // remove
-	void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut); // remove
-	void quickSortRecursive(Node*& headRef, Node* end);// remove
-	void quickSort();// remove
+	//Sort implementation			================ RAED HAZEEQ
+
+
+
 	void SortRoomMain();
-	//Sort implementation			================
+	//================
 
-	//Search implementation			================
-	void sequentialSearch(double hargaCarian); // remove
-	void binarySearch(double hargaCarian); // remove
+	//Search implementation			================ FAHRUL AZWAN and DATU AMIRUL
+
+
+
 	void SearchRoomMain();
-	//Search implementation			================	
+	//================ 
 
 	//Delete implementation			================
-	void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);// remove
-	void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);// remove
-	void padam(int& baris);// remove
-	void DeleteRoomMain();// remove
-	//Delete implementation			================
+	//void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);
+	//void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);
+	//void padam(int& baris);
+	//void DeleteRoomMain();
+	//================
 	
-	//Add Booking implementation	================
+	//Add Booking implementation	================ Arif
 	void findTargetNode(int baris, Node*& targetNode);
 	void bookInputData(int baris);
 	void AddbookingMain();
-	//Add Booking implementation	================
+	//================
 
+	// Utiliti boleh guna banyak kali	================ Arif
+	void printLabel(string text);	//label
+	void printLabel(string text1, string text2); //label
+	void printHeaderTable(); //header table
+	void printBodyTable(Node* temps); // content table
+	void printFooterTable(); //bahagian bawah table
 
-	//remove
-	void InsertDefaultNode(const string& name, double price, const string& type, const string& available = "Yes", const string& checkIn = " - ", const string& checkOut = " - ", const string& paymentStatus = " - ") {
-
-		Node* pNew = new Node();
-
-		totalRoom++;
-
-		pNew->roomNumber = totalRoom;
-		pNew->name = name;
-		pNew->price = price;
-		pNew->type = type;
-
-		// Guna parameter yang baru dimasukkan
-		pNew->isaVailable = available;
-		pNew->dateChackIn = checkIn;
-		pNew->dateChackOut = checkOut;
-		pNew->payment = paymentStatus;
-
-		pNew->link = nullptr;
-
-		// Logik Linked List (sama seperti sebelum ini)
-		if (pHead == nullptr) {
-			pHead = pNew;
-		}
-		else {
-			Node* temp = pHead;
-			while (temp->link != nullptr) {
-				temp = temp->link;
-			}
-			temp->link = pNew;
-		}
-	}// remove
-	//remove
-
-	// Utiliti boleh guna banyak kali	================
-	void printLabel(string text);
-	void printLabel(string text1, string text2);
-	void printHeaderTable();
-	void printBodyTable(Node* temps);
-	void printFooterTable();
-
-	void ShowAll();
-	void ShowOne(Node* one);
+	void ShowAll(); // show all table data room
+	void ShowOne(Node* one);	// show satu table data room
+	void ShowTableSelect(int baris); //show manu yg di select
+	//show manu 
 	void ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]);
-	void ShowTableSelect(int baris);
 	
-	double getDoublee(string textInput, string textError);
-	double getIntt(string textInput, string textError);
-	string getStringg(string textInput, string textError);
-	void getDate(int& tahun, int& mount, int& day, string type);
-	void getDateDay(int& input);
+	double getDoublee(string textInput, string textError); //get double yg valid dari user
+	//double getIntt(string textInput, string textError);
+	string getStringg(string textInput, string textError); //get string dari user
+	void getDate(int& tahun, int& mount, int& day, string type);//get Date , hari bulan tahun
+	void getDateDay(int& input); //dapatkan date yg valid
 	
-	void setColor(string text);
+	void setColor(string text);// tuka warna terminal
 
-	bool isContinue();
-	string handleArrow(int& baris, int length);
-	string convertDateToString(int year, int mount, int day);
-	void nextLine();
-	void clear();
+	bool isContinue(); //kalau nak add room lagi
+	string handleArrow(int& baris, int length);// handle keyboard user
+	string convertDateToString(int year, int mount, int day); //convert int int int to string date
+	void nextLine(); //endl
+	void clear(); //clear screen
 
-	void test();
-
+	// show manu yg di select left/right
 	template<typename T>
 	void showOptionBaris(int colum, T options[], int count_pilihan);
 
+	// select array guna arrow left/right
 	template<typename T>
-	T optionBaris(T optionss[], int count_pilihan, string text);
-	// Utiliti							================
+	T optionBaris(T optionss[], int count_pilihan, string text); 
+	
+	//================
+
+	//void getTail(Node* cur, Node*& tail); // remove
+	//void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut); // remove
+	//void quickSortRecursive(Node*& headRef, Node* end);// remove
+	//void quickSort();// remove
+	//===
+	//void sequentialSearch(double hargaCarian); // remove
+	//void binarySearch(double hargaCarian); // remove
 };
+
+#endif
 
 template<typename T>
 void Room::showOptionBaris(int colum, T options[], int count_pilihan) {
@@ -200,3 +219,4 @@ T Room::optionBaris(T optionss[], int count_pilihan, string text) {
 	cout << endl;//!
 	return optionss[colum];
 }
+

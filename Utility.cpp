@@ -1,3 +1,12 @@
+/*
+	description:
+	it utility func can use many time
+	all func is more to ui 
+ 
+	@author Arif Fitri
+ 
+ */
+
 #include "Room.h"
 
 void Room::printLabel(string text) {
@@ -123,6 +132,7 @@ void Room::ShowOne(Node* one) {
 	printFooterTable();
 }
 
+//get double yg valid dari user
 double Room::getDoublee(string textInput, string textError) {
 	double input;
 	while (true) {
@@ -137,20 +147,21 @@ double Room::getDoublee(string textInput, string textError) {
 	}
 }
 
-double Room::getIntt(string textInput, string textError) {
-	double input;
-	while (true) {
-		cout << textInput;;
-		cin >> input;
+//double Room::getIntt(string textInput, string textError) {
+//	double input;
+//	while (true) {
+//		cout << textInput;;
+//		cin >> input;
+//
+//		if (!cin.fail() && input >= 0) return input;
+//
+//		cin.clear();
+//		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//		cout << textError << "\n";
+//	}
+//}
 
-		if (!cin.fail() && input >= 0) return input;
-
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		cout << textError << "\n";
-	}
-}
-
+//get string dari user
 string Room::getStringg(string textInput, string textError) {
 	string name;
 	do {
@@ -162,12 +173,12 @@ string Room::getStringg(string textInput, string textError) {
 	return name;
 }
 
-void Room::setColor(string text) {
+void Room::setColor(string text) { // tuka warna terminal
 	int code;
 
-	if (text == "putih") code = code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-	else if (text == "biru")  code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_BLUE;
-	else                       code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;   
+	if (text == "putih")		code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+	else if (text == "biru")	code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | BACKGROUND_BLUE;
+	else						code = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;   
 
 	SetConsoleTextAttribute(hConsole, code);
 }
@@ -179,68 +190,77 @@ bool Room::isContinue() {
 	return (c == "yes");
 }
 
+//show manu yg boleh select untuk linked list
 void Room::ShowTableSelect(int baris) {
 
-	printHeaderTable();
+	printHeaderTable(); // print header table
 
 	Node* temps = pHead;
 	int i = 1;
 
-	while (temps != nullptr) {
+	while (temps != nullptr) {//loop all list
 
 		bool selected = (i == baris + 1);
 
 		if (selected) {
-			setColor("biru");
+			setColor("biru");//tuka back jadi biru
 			printBodyTable(temps);
 		}
 		else {
-			setColor("none");
+			setColor("none");//tuka back jadi normal
 			printBodyTable(temps);
 		}
 
-		temps = temps->link;
+		temps = temps->link; //next list
 		i++;
 	}
-	setColor("none");
+	setColor("none");//tuka back jadi normal
 
-	printFooterTable();
-	printLabel("Select guna arrow Up/Down and Enter untuk Update", "Pess ESC to back");
+	printFooterTable(); //footer table
+	printLabel("Select guna arrow Up/Down and Enter untuk Update", "Pess ESC to back"); //print label bawah
 }
 
-void Room::ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]){
-	clear();
-	printLabel(text);
+//show manu yg boleh select untuk array
+void Room::ShowMenu(string text, string text2, string text3, string text4, int baris, int length, string listCari[]){ 
+	clear(); //clear screen
+	printLabel(text); // print label atas
 
 	if (text2 != "") cout << text2 << endl;
 
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < length; i++) {	//loop all array
 		if (i == baris) {
-			setColor("biru");
+			setColor("biru"); //tuka back jadi biru
 			cout << "> " << listCari[i] << endl;
 		}
 		else {
-			setColor("none");
+			setColor("none");//tuka back jadi normal
 			cout << "  " << listCari[i] << endl;
 		}
 	}
-	setColor("none");
+	setColor("none");//tuka back jadi normal
 
-	nextLine();
-	printLabel(text3, text4);
+	nextLine();	//next line
+	printLabel(text3, text4); // print label bawah
 }
 
+//get Date
 void Room::getDate(int& tahun, int& mount, int& day, string type) {
-	int yeer[] = { 2024,2025,2026 };
-	int bulan[] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
+	int yeer[] = { 2024,2025,2026 }; //option year
+	int bulan[] = { 1,2,3,4,5,6,7,8,9,10,11,12 }; //option bulan
 	
-	tahun = optionBaris<int>(yeer, 3, "Masukkan Tahun " + type + " :");
+	//datapkan tahun guna arrow left/right
+	tahun = optionBaris<int>(yeer, 3, "Masukkan Tahun " + type + " :"); 
+	
+	//datapkan bulan guna arrow left/right
 	mount = optionBaris<int>(bulan, 12, "Masukkan Bulan " + type + " :");
+	
+	//datapkan tarikh
 	getDateDay(day);
 }
 
-string Room::handleArrow(int& baris, int length) {
-	char key = _getch();
+// handle keyboard user
+string Room::handleArrow(int& baris, int length) { 
+	char key = _getch(); // capture keyboard user
 
 	if (key == 27) return "esc";		// ESC
 	if (key == 13) return "enter";		// ENTER
@@ -257,10 +277,11 @@ string Room::handleArrow(int& baris, int length) {
 	return "";
 }
 
-void Room::clear() { system("cls"); }
+void Room::clear() { system("cls"); } // clear screen
 
-void Room::nextLine() { cout << endl; }
+void Room::nextLine() { cout << endl; }	// next line
 
+//dapatkan date yg valid
 void Room::getDateDay(int& input) {
 	while (true) {
 		cout << "Masukkan hari : ";
@@ -268,11 +289,12 @@ void Room::getDateDay(int& input) {
 		if (input > 0 && input <= 31) return;
 
 		cout << "\tHey Input Invalid! \n";
-		cin.clear(); 
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		cin.clear(); //clear buffer
+		cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clear buffer
 	}
 }
 
+//convert int int int to string date
 string Room::convertDateToString(int year, int mount, int day) {
 	return to_string(day) + "/" + to_string(mount) + "/" + to_string(year);
 }

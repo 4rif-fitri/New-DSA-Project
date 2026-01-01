@@ -1,3 +1,9 @@
+/*
+	description: update the room to booked or free
+
+	@author Arif Fitri
+
+ */
 #include "Room.h"
 
 void Room::findTargetNode(int baris, Node*& targetNode) { // dapatkan node yg user pilih.
@@ -8,7 +14,7 @@ void Room::findTargetNode(int baris, Node*& targetNode) { // dapatkan node yg us
 }
 
 void Room::bookInputData(int baris) {
-	Node* targetNode;
+	Node* targetNode; //terget node
 
 	string isTersedia, typePayment;
 	string optionsAvailable[] = {
@@ -22,53 +28,54 @@ void Room::bookInputData(int baris) {
 	string tarikhIn, tarikhOut;
 
 	int tahunIn,tahunOut, mountIn,dayIN, mountOut, dayOut;
-	int countPilihanAvailable = sizeof(optionsAvailable) / sizeof(*optionsAvailable);
-	int countPilihanPayment = sizeof(optionsAvailable) / sizeof(*optionsAvailable);
 
-	findTargetNode(baris, targetNode);
-	clear();
-	printLabel("Add Booking Room");
-	ShowOne(targetNode);
+	int countPilihanAvailable = sizeof(optionsAvailable) / sizeof(*optionsAvailable); // get panjang array 
+	int countPilihanPayment = sizeof(optionsAvailable) / sizeof(*optionsAvailable); //get panjnag array payment method
 
-	cout << "Sila Masukkan Detail Booking : \n";
-	isTersedia = optionBaris<string>(optionsAvailable, countPilihanAvailable,"Status : ");
+	findTargetNode(baris, targetNode);	//func dapatkan terget linked list base on baris yg user enter
+	clear();	//clear screen
+	printLabel("Add Booking Room"); // print label kat atas
+	ShowOne(targetNode);	// bile dah ada target node akan ditunjukkan dalam satu table
 
-	if (isTersedia == "Free") {
+	cout << "Sila Masukkan Detail Booking : \n"; 
+	isTersedia = optionBaris<string>(optionsAvailable, countPilihanAvailable,"Status : "); // update status room, guna arrow left/right
+
+	if (isTersedia == "Free") { // if free
 		tarikhIn = "-";
 		tarikhOut = "-";
 		typePayment = "-";
 	}
-	else if (isTersedia == "Booked") {
-		nextLine();
-		getDate(tahunIn, mountIn, dayIN, "masuk");
-		nextLine();
-		getDate(tahunOut, mountOut, dayOut, "keluuar");
-		nextLine();
+	else if (isTersedia == "Booked") { //if kalau ade yg nak book
+		nextLine(); // endl
+		getDate(tahunIn, mountIn, dayIN, "masuk"); //get Date In
+		nextLine();	//endl
+		getDate(tahunOut, mountOut, dayOut, "keluuar");	//get Date Out
+		nextLine();	//endl
 
-		typePayment = optionBaris<string>(optionPayment, countPilihanPayment,"Payment : ");
+		typePayment = optionBaris<string>(optionPayment, countPilihanPayment,"Payment : "); //get payment method, guna arrow left/right
 
-		tarikhIn = convertDateToString(tahunIn, mountIn, dayIN);
-		tarikhOut = convertDateToString(tahunOut, mountOut, dayOut);
+		tarikhIn = convertDateToString(tahunIn, mountIn, dayIN);	//convert int to srting date
+		tarikhOut = convertDateToString(tahunOut, mountOut, dayOut);//convert int to srting date
 	}
 
-	targetNode->dateChackIn = tarikhIn;
-	targetNode->dateChackOut = tarikhOut;
-	targetNode->payment = typePayment;
-	targetNode->isaVailable= isTersedia;
+	targetNode->dateChackIn = tarikhIn;		//setkan ke target linked list
+	targetNode->dateChackOut = tarikhOut;	//setkan ke target linked list
+	targetNode->payment = typePayment;		//setkan ke target linked list
+	targetNode->isaVailable= isTersedia;	//setkan ke target linked list
 }
 
-void Room::AddbookingMain() {
-	char choice = -1;
-	int baris = 0;
+void Room::AddbookingMain() { // main func for add booking
+	int baris = 0; // akan berubah ubah apabila user tekan arrow up/down 
+				   // then akan dijadikan petunjuk untuk cari target linked list
 
-	while (true) {
-		clear();
-		printLabel("Add Booking Room");
-		ShowTableSelect(baris);
+	while (true) {	// infinity loop
+		clear();	//clear screen
+		printLabel("Add Booking Room"); //print label di atas
+		ShowTableSelect(baris); // show table yg boleh select base on baris
 
-		string action = handleArrow(baris, totalRoom);
+		string action = handleArrow(baris, totalRoom);	//get action from user
 
-		if (action == "enter") bookInputData(baris);
+		if (action == "enter") bookInputData(baris); // go to get input date base on target linked list
 
 		if (action == "esc") break; //esc
 	}

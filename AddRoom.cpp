@@ -1,10 +1,17 @@
+/*
+	description: Add room to linked list
+
+	@author Arif Fitri
+
+ */
+
 #include "Room.h"
 
-void Room::AddRoomMain() {
+void Room::AddRoomMain() {  // main func to add room
 	while (true) {
 		clear();
 		printLabel("Add Room");
-		ShowAll();
+		ShowAll(); //show all romm dalam bentuk table
 
 		string name;
 		string type;
@@ -13,15 +20,16 @@ void Room::AddRoomMain() {
 		Node* pNew = new Node();
 
 		string options[] = { "Family", "Deluxe", "Standard", "VIP" };
-		int lenght = (sizeof(options) / sizeof(*options));
+		int lenght = (sizeof(options) / sizeof(*options)); //get lenght array options
 
 		cout << "\nMasukkan Detail Room\n";
-		name = getStringg("Name Room :","Name Room Tidak boleh kosong");
-		type = optionBaris<string>(options, lenght,"Type room : ");
-		price = getDoublee("Price : ","Invalid price");
+		name = getStringg("Name Room :","Name Room Tidak boleh kosong"); //get name room
+		type = optionBaris<string>(options, lenght,"Type room : ");			//get type room, guna arrow left/right
+		price = getDoublee("Price : ","Invalid price");		//get price
 
-		totalRoom = totalRoom++;
+		totalRoom = totalRoom++; //tambah total room
 
+		//set to linked list
 		pNew->roomNumber = totalRoom;
 		pNew->name = name;
 		pNew->price = price;
@@ -36,23 +44,23 @@ void Room::AddRoomMain() {
 		if (pHead == nullptr) { //if link list kosaong
 			pHead = pNew;
 		
-		}else {
+		}else { // kalau linked list dah ada list add back
 		
 			Node* temp = pHead;
-			while (temp->link != nullptr) {
-				temp = temp->link;
+			while (temp->link != nullptr) { //dapatkan linked list last
+				temp = temp->link;	// go to next list
 			}
 			temp->link = pNew;
 		
 		}
 
-		clear();
-		printLabel("Add Room");
-		ShowAll();
+		clear(); //clear screem
+		printLabel("Add Room");	//label kat atas
+		ShowAll();	//show all room dalam table
 
-		if (!isContinue()) break;
+		if (!isContinue()) break;	//kalau user nak add lagi
 	}
-	printLabel("Pess ESC to back");
+	printLabel("Pess ESC to back");	
 
 }
 

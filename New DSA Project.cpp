@@ -1,48 +1,67 @@
-﻿#include <iostream>
+﻿/*
+	description:
+	Main of the program
+
+	@author Arif Fitri
+
+ */
+#include <iostream>
 using namespace std;
 #include "Room.h"
 
 void main() {
 
-	Room room;
+	Room room; //create object
 
-	string menuList[] = {
+	//list manu
+	string menuList[] = { 
 		"Add Room",
 		"Show Table Room",
 		"Sort Room By harga",
 		"Search Room By Price",
 		"Add Booking Room",
-		"Delete Room",
+		//"Delete Room",
 		"Exit",
 	};
 
-	room.InsertDefaultNode("Ocean Front", 500.00, "VIP","Booked", "2025/12/10", "2025/12/15", "Paid");
-	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe","Yes");
-	room.InsertDefaultNode("Family Hall A", 480.00, "Family","Booked", "2025/12/12", "2025/12/14", "Deposit");
-	room.InsertDefaultNode("Garden Suite", 220.50, "Standard","Yes");
+	int length = sizeof(menuList) / sizeof(*menuList); //get panjang list menuList
+	int baris = 0;	//start dari kosong untuk manu
 
-	int length = sizeof(menuList) / sizeof(*menuList);
-	int baris = 0;
-
-	while (true) {
+	while (true) {	//infinity loop
+		//show manu yg boleh select array guna arrow up/down 
 		room.ShowMenu("Resort Pasific Sumatra Booking","","Guna Arrow Up/Down untuk pilih","Esc untuk back",baris,length,menuList);
 
-		string action = room.handleArrow(baris, length);
-
-		if (action == "esc") break; //esc
+		string action = room.handleArrow(baris, length); //get key from user keybord
 
 		if (action == "enter") { // enter
-			room.clear();
-			if		(baris == 0) room.AddRoomMain();
+			room.clear(); // clear screen
+			if (baris == 0) room.AddRoomMain();
 			else if (baris == 1) room.ShowRoomMain();
 			else if (baris == 2) room.SortRoomMain();
 			else if (baris == 3) room.SearchRoomMain();
 			else if (baris == 4) room.AddbookingMain();
-			else if (baris == 5) room.DeleteRoomMain();
-			else if (baris == 6) room.test();
+			else if (baris == 5) break; ///exit
 		}
+
+		if (action == "esc") break; //esc
 	}
 
-	room.clear();
-	room.printLabel("Program Tamat");
+	room.clear(); // clear screen
+	room.printLabel("Program Tamat"); //and prog
 }
+
+
+
+
+
+
+	//if (action == "enter") { // enter
+		//	room.clear(); // clear screen
+		//	if		(baris == 0) room.AddRoomMain(); 
+		//	else if (baris == 1) room.ShowRoomMain();
+		//	else if (baris == 2) room.SortRoomMain();
+		//	else if (baris == 3) room.SearchRoomMain();
+		//	else if (baris == 4) room.AddbookingMain();
+		//	else if (baris == 5) room.DeleteRoomMain();
+		//	else if (baris == 6) break;
+		//}
