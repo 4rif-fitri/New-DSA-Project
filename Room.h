@@ -103,7 +103,8 @@ public:
 	//================
 
 	//Search implementation			================ FAHRUL AZWAN and DATU AMIRUL
-
+void binarySearch(double hargaCarian);
+void sequentialSearch(double hargaCarian);
 
 
 	void SearchRoomMain();
