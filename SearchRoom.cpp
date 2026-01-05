@@ -6,12 +6,49 @@
  */
 
 #include "Room.h"
+void Room::binarySearch(double harga) {
 
- void Room::binarySearch(double harga) {
-    cout << "lorem";
-    //kalau dah junpa guba ni 
-    //ShowOne(curr); untuk show
+        Node* start = pHead;
+        Node* last = nullptr;
+        bool found = false;
+
+        while (start != last) {
+            Node* slow = start;
+            Node* fast = start->link;
+
+            // cari node tengah
+            while (fast != last) {
+                fast = fast->link;
+                if (fast != last) {
+                    slow = slow->link;
+                    fast = fast->link;
+                }
+            }
+
+            Node* mid = slow;
+            if (mid == nullptr) break;
+
+            if (mid->price == harga) {
+                cout << "\nJUMPA (Binary Search)\n";
+                ShowOne(mid);
+                found = true;
+                break;
+            }
+            else if (mid->price < harga) {
+                start = mid->link;
+            }
+            else {
+                last = mid;
+            }
+        }
+
+        if (!found) {
+            cout << "\nBilik dengan harga RM"
+                 << fixed << setprecision(2)
+                 << harga << " tidak ditemui.\n";
+        }
 }
+//kalau dah junpa guba
 
 void Room::sequentialSearch(double harga) {
     Node* curr = pHead;
