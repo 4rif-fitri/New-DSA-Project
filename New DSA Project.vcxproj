@@ -130,7 +130,7 @@
     <ClCompile Include="AddBooking.cpp" />
     <ClCompile Include="AddRoom.cpp" />
     <ClCompile Include="DeleteRoom.cpp" />
-    <ClCompile Include="New DSA Project.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="SearchRoom.cpp" />
     <ClCompile Include="ShowRoom.cpp" />
     <ClCompile Include="SortRoom.cpp" />
