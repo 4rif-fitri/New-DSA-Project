@@ -29,7 +29,7 @@ void main() {
 
 	while (true) {	//infinity loop
 		//show manu yg boleh select array guna arrow up/down 
-		room.ShowMenu("Resort Pasific Sumatra Booking","","Guna Arrow Up/Down untuk pilih","Esc untuk back",baris,length,menuList);
+		room.ShowMenu("Resort Pasific Sumatra Booking","","Guna Arrow Up/Down untuk pilih","",baris,length,menuList);
 
 		string action = room.handleArrow(baris, length); //get key from user keybord
 
@@ -42,8 +42,6 @@ void main() {
 			else if (baris == 4) room.AddbookingMain();
 			else if (baris == 5) break; ///exit
 		}
-
-		if (action == "esc") break; //esc
 	}
 
 	room.clear(); // clear screen
